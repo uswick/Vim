@@ -21,5 +21,12 @@ Go to file
 gf = go to file on the cursor
 
 
+Split File
+=============
 
+:sp = horiz
+
+:vsp = vertical
+
+Ctrl + w + up/left/down/right arrow == navigate splits
 
