@@ -3,9 +3,13 @@ My vim settings
 Navigate 
 =========
 
-Ctrl + I = navigate fwd
+Ctrl + I = navigate fwd page/windw
 
-Ctrl + O = navigate back
+Ctrl + O = navigate back page/windw
+
+Shift + ] = scroll down page
+
+Shift + [ = scroll up page
 
 
 Tabs
