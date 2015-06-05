@@ -4,7 +4,9 @@ Tabs
 ==========
 
 :tabe == open tab for edit
+
 gt == go to next tab
+
 gT = go to prev tab
 
 
