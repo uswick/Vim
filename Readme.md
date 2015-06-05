@@ -30,3 +30,7 @@ Split File
 
 Ctrl + w + up/left/down/right arrow == navigate splits
 
+Ctrl + wT = move split to own tab
+
+
+
