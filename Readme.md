@@ -1,5 +1,13 @@
 My vim settings
 
+Navigate 
+=========
+
+Ctrl + I = navigate fwd
+
+Ctrl + O = navigate back
+
+
 Tabs
 ==========
 
