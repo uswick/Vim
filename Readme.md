@@ -8,8 +8,11 @@ SETUP
 Install Python
 ===============
 get python 2.7.x (ie:- 2.7.10)
+
 ./configure --prefix= --enable-unicode=ucs2 --enable-shared
+
 make 
+
 make install
 
 install VIM 7.4
@@ -23,6 +26,7 @@ configure with above  Python
 make VIMRUNTIMEDIR=/g/g92/uswickra/vim74
 
 (edit src/Makefile prefix variable if install location is not standard!)
+
 make install
 
 install Vundle
@@ -33,6 +37,7 @@ install YCM
 =============
 
 cd ~/.vim/bundle/YouCompleteMe
+
 ./install.sh --clang-completer
 
 go to vim
