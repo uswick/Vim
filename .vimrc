@@ -47,6 +47,10 @@ call vundle#end()            " required
 syntax on
 filetype plugin indent on
 
+map <C-g> <C-g><C-]>
+set backspace=indent,eol,start
+
+
 " configure tags - add additional tags here or comment out not-used ones
 set tags+=~/.vim/tags/cpp
 set tags+=~/.vim/tags/gl
