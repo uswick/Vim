@@ -38,12 +38,25 @@ install YCM
 
 cd ~/.vim/bundle/YouCompleteMe
 
-./install.sh --clang-completer
-
 go to vim
 
 :PluginInstall
 
+install clang+llvm 3.6
+=======================
+copy clang to llvm_root/src/tools
+
+cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/g/g92/uswickra/Caliper/ClangforVim/llvm-3.6.1.src/install/ -DCMAKE_C_COMPILER=/usr/apps/gnu/4.9.2/bin/gcc -DCMAKE_CXX_COMPILER=/usr/apps/gnu/4.9.2/bin/g++ -DCMAKE_BUILD_TYPE=Release ../
+
+make && make install
+
+install ycm support libs(use c++11/ 4.7+, python 2.7+)
+=======================================================
+Note : python library location / paths explicit due to a bug
+
+cmake -G "Unix Makefiles" -DCMAKE_C_COMPILER=/usr/apps/gnu/4.9.2/bin/gcc -DCMAKE_CXX_COMPILER=/usr/apps/gnu/4.9.2/bin/g++ -DPATH_TO_LLVM_ROOT=/g/g92/uswickra/LLVM_ROOT  -DPYTHON_EXECUTABLE=/usr/local/tools/python-2.7.7/bin/python -DPYTHON_LIBRARY=/usr/local/tools/python-2.7.7/lib/libpython2.7.so -DPYTHON_INCLUDE_DIR=/usr/local/tools/python-2.7.7/include/python2.7/ . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
+
+make ycm_support_libs
 
 
 ======================
