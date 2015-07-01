@@ -75,6 +75,14 @@ Shift + ] = scroll down page
 
 Shift + [ = scroll up page
 
+Navigate-Nerd tree 
+==================
+
+s - open new panel
+
+enter - open in the same panel
+
+Ctrl + W + arrow_key = navigate to a panel
 
 Tabs
 ==========
