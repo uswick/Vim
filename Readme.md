@@ -124,3 +124,6 @@ Shift + Q = code usage
 
 Ctrl  + L = format code
 
+Ctrl  + G = go to definition/decleration 
+
+
