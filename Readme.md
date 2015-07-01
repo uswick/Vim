@@ -111,6 +111,8 @@ Ctrl + wT = move split to own tab
 Custom
 =========
 Shift + W = expand region
+
 Shift + Q = code usage
+
 Ctrl  + L = format code
 
