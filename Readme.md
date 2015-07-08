@@ -15,7 +15,7 @@ make
 
 make install
 
-install VIM 7.4
+Install VIM 7.4
 ===============
 download from ftp://ftp.vim.org/pub/vim/unix
 
@@ -29,11 +29,11 @@ make VIMRUNTIMEDIR=/g/g92/uswickra/vim74
 
 make install
 
-install Vundle
+Install Vundle
 ==============
 follow git doc
 
-install YCM
+Install YCM
 =============
 
 Plugin 'Valloric/YouCompleteMe' in ~/.vimrc
@@ -42,7 +42,7 @@ go to vim
 
 :PluginInstall
 
-install clang+llvm 3.6
+Install clang+llvm 3.6
 =======================
 copy clang to llvm_root/src/tools
 
@@ -50,7 +50,7 @@ cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/g/g92/uswickra/ClangforVim/llv
 
 make && make install
 
-install ycm support libs(use c++11/ 4.7+, python 2.7+)
+Install ycm support libs(use c++11/ 4.7+, python 2.7+)
 =======================================================
 Note : python library location / paths explicit due to a bug
 
@@ -58,7 +58,7 @@ cmake -G "Unix Makefiles" -DCMAKE_C_COMPILER=/usr/apps/gnu/4.9.2/bin/gcc -DCMAKE
 
 make ycm_support_libs
 
-Bash profile Entries
+Bash Profile Entries
 =======================
 Include vim 7.4 / clang/llvm and python into PATH and LD_LIBRARY_PATH
 
