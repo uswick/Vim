@@ -1,5 +1,4 @@
-My vim settings
-
+Following is a guide on how to setup Vim 7.4 with YCM/Syntactic and the usage
 
 =====
 SETUP
