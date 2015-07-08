@@ -118,12 +118,22 @@ Ctrl + wT = move split to own tab
 
 Custom
 =========
-Shift + W = expand region
+Shift + W ==> expand region
 
-Shift + Q = code usage
+Shift + Q ==> code usage
 
-Ctrl  + L = format code
+Shift + Up ==> move line up
 
-Ctrl  + G = go to definition/decleration 
+Shift + Down ==> move line down
 
+Ctrl  + L = format code  (gg=G for crude formatting)
+
+Ctrl + g ==> jump to definition/declearation (uses ctags, do 'ctags -R . *'
+
+Ctrl + F ==> refactor
+
+Ctrl + D ==> duplicate line
+
+Ctrl + c   ==> copy/paste
+Ctrl + v 
 
