@@ -63,6 +63,7 @@ Bash Profile Entries
 Include vim 7.4 / clang/llvm and python into PATH and LD_LIBRARY_PATH
 
 //to fix backspace bug
+
 stty erase '^?'
 
 export PATH=/g/g92/uswickra/vim74/install/bin:$PATH
