@@ -58,6 +58,16 @@ cmake -G "Unix Makefiles" -DCMAKE_C_COMPILER=/usr/apps/gnu/4.9.2/bin/gcc -DCMAKE
 
 make ycm_support_libs
 
+Bash profile Entries
+=======================
+#include vim 7.4 / clang/llvm and python into PATH and LD_LIBRARY_PATH
+
+export PATH=/g/g92/uswickra/vim74/install/bin:$PATH
+export PATH=/g/g92/uswickra/LLVM_ROOT/bin:$PATH
+export PATH=/usr/local/tools/python-2.7.7/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/tools/python-2.7.7/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/g/g92/uswickra/LLVM_ROOT/lib:$LD_LIBRARY_PATH
+
 
 ======================
 Shortcuts
