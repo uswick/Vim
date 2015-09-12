@@ -17,6 +17,7 @@ Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 
 Plugin 'terryma/vim-expand-region'
 Plugin 'Chiel92/vim-autoformat'
@@ -63,6 +64,8 @@ nnoremap <C-d> yyp
 
 map <C-c> "+y<CR>
 map <C-v> o<Esc>"+gP<CR>
+"map nerd commenter
+map ? \ci <Down>
 
 "behave mswin
 "set clipboard=unnamedplus
@@ -102,7 +105,7 @@ let g:UltiSnipsEditSplit="vertical"
 let NERDTreeDirArrows=0
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 autocmd VimEnter * NERDTreeToggle
-
+let NERDTreeShowLineNumbers=1
 
 "
 " ===========expand region
@@ -133,5 +136,4 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11'
 "
 let g:syntastic_cpp_include_dirs = ['/g/g92/uswickra/Caliper/src/**']
 let g:syntastic_cpp_check_header = 1
-
 
