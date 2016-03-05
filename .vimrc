@@ -24,6 +24,7 @@ Plugin 'Chiel92/vim-autoformat'
 
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'scrooloose/syntastic'
+Plugin 'airblade/vim-gitgutter.git'
 
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
@@ -40,7 +41,7 @@ syntax on
 filetype plugin indent on
 
 "=============SET COLOR SCHEME================
-colorscheme evening
+colorscheme github
 
 set tags=./tags,./src/tags,tags;$HOME
 
@@ -137,3 +138,17 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11'
 let g:syntastic_cpp_include_dirs = ['/g/g92/uswickra/Caliper/src/**']
 let g:syntastic_cpp_check_header = 1
 
+"===========ClangFormat
+"let g:formatdef_clangformat_objc = '"clang-format -assume-filename=/Users/udayanga/.vim/clang.style "'
+"let g:formatdef_clangformat_objc = '"clang-format -lines=".a:firstline.":".a:lastline." -assume-filename=/Users/udayanga/.vim/clang.style "'
+let g:formatdef_clangformat_objc = '"clang-format -lines=".a:firstline.":".a:lastline." -assume-filename=/Users/udayanga/Install/HPX/release_2.2/hpx/.clang-format"'
+let g:formatters_c = ['clangformat_objc']
+let g:formatters_tex = ['clangformat_objc']
+let g:formatters_h = ['clangformat_objc']
+let g:formatters_hpp = ['clangformat_objc']
+let g:formatters_cpp = ['clangformat_objc']
+let g:formatters_C = ['clangformat_objc']
+let g:autoformat_verbosemode = 1
+
+"==================== gitglutter
+autocmd VimEnter * GitGutterLineHighlightsEnable
