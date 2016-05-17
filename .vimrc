@@ -35,7 +35,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 "Plugin 'ivalkeen/vim-ctrlp-tjump'
 Plugin 'morhetz/gruvbox'
 Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
-"Plugin 'jiangmiao/auto-pairs'
+Plugin 'jiangmiao/auto-pairs'
 
 " " All of your Plugins must be added before the following line
 call vundle#end()            " required
