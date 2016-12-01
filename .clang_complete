@@ -1,0 +1,18 @@
+-DPIC
+-Wl,-rpath
+-Wl,/foo
+-Werror
+-Wunknown-warning-option
+-Wsizeof-array-argument
+-Wall
+-D_WIN32_WINNT=0x0601
+-I .
+-I/home/uswickra/hpx/hpx-libnbc/sw_coll/hpx4/hpx/contrib/hwloc/include
+-I /home/uswickra/hpx/hpx-libnbc/sw_coll/hpx4/hpx/BUILD_PHOTON_DIR/include/
+-I /home/uswickra/hpx/hpx-libnbc/sw_coll/hpx4/hpx/BUILD_DIR/install/include/libcuckoo/
+-I /home/uswickra/hpx/hpx-libnbc/sw_coll/hpx4/hpx/BUILD_DIR/install/include/libapex 
+-I /home/uswickra/hpx/hpx-libnbc/sw_coll/hpx4/hpx/BUILD_DIR/install/include/urcu
+-I /home/uswickra/hpx/hpx-libnbc/sw_coll/hpx4/hpx/BUILD_DIR/install/include/jemalloc
+-I /home/uswickra/hpx/hpx-libnbc/sw_coll/hpx4/hpx/BUILD_DIR/install/include/
+-I /opt/openmpi/1.10.1/include/
+-std=gnu++11
