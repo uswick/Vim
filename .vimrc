@@ -10,7 +10,10 @@ call vundle#begin()
 "
 " " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-fugitive'
+
+Plugin 'Rip-Rip/clang_complete'
+"Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'SirVer/ultisnips'
 
@@ -25,10 +28,21 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'scrooloose/syntastic'
 
+Plugin 'vim-scripts/cscope.vim'
+Plugin 'vim-scripts/Conque-GDB'
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
 "Plugin 'garbas/vim-snipmate'
-"
+Plugin 'airblade/vim-gitgutter.git'
+Plugin 'mhinz/vim-startify'
+Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'ivalkeen/vim-ctrlp-tjump'
+Plugin 'morhetz/gruvbox'
+Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'majutsushi/tagbar'
+"Plugin 'vim-scripts/taglist.vim'
+
 " " All of your Plugins must be added before the following line
 call vundle#end()            " required
 " ============Vundle END
@@ -40,12 +54,17 @@ syntax on
 filetype plugin indent on
 
 "=============SET COLOR SCHEME================
-colorscheme evening
+"colorscheme evening
+"colorscheme github
+"colorscheme gruvbox
+"set background=dark 
+color dracula
 
 set tags=./tags,./src/tags,tags;$HOME
 
 ":vimgrep 'get_path' ../Caliper/src/**/*.cpp
-let CURR_PROJ="/g/g92/uswickra/Caliper"
+"let CURR_PROJ="/u/uswickra/hpx/libnbc-photon/libNBC-1.0.1/"
+let CURR_PROJ="/u/uswickra/hpx/hpx-libnbc/sw_coll/hpx"
 
 "=============Keyboard Shortcuts================
 "====== Ctrl + g ==> jump to definition/declearation (uses ctags, do 'ctags -R . *'
@@ -56,7 +75,9 @@ let CURR_PROJ="/g/g92/uswickra/Caliper"
 "====== Ctrl + D ==> duplicate line
 "
 map <silent> <C-g> g<C-]>
-nnoremap Q :vimgrep "<C-R><C-W>" /g/g92/uswickra/Caliper/src/**/*.{c,h,cpp,hpp}<CR>:cw<CR>
+map <silent> <C-h> <C-w><C-]><C-w>T
+"nnoremap Q :vimgrep "<C-R><C-W>"/u/uswickra/hpx/libnbc-photon/libNBC-1.0.1/**/*.{c,h,cpp,hpp}<CR>:cw<CR>
+nnoremap Q :vimgrep "<C-R><C-W>"/u/uswickra/hpx/hpx-libnbc/hpx/**/*.{c,h}<CR>:cw<CR>
 nnoremap <C-f> :%s/\<<C-r><C-w>\>/
 nnoremap <S-Down> ddp
 nnoremap <S-Up> dd<Up>P
@@ -66,6 +87,27 @@ map <C-c> "+y<CR>
 map <C-v> o<Esc>"+gP<CR>
 "map nerd commenter
 map ? \ci <Down>
+
+nnoremap <S-n> :tabe<CR>
+"nnoremap <S->m> :set number<CR>
+
+"sessions
+map <F2> :SSave <cr> " Quick write session with F2
+map <F3> :SLoad <cr>     " And load session with F3
+map <F4> :SDelete <cr>     " And delete with F4
+
+autocmd VimEnter *
+                \   if !argc()
+                \ |   Startify
+                \ |   NERDTree
+                \ |   wincmd w
+                \ | endif
+
+"Ctrlp
+nnoremap <c-]> :CtrlPBufTagAll<cr>
+nnoremap <c-P> :CtrlPTag<cr>
+"nnoremap <c-]> :CtrlPtjump<cr>
+"vnoremap <c-]> :CtrlPtjumpVisual<cr>
 
 "behave mswin
 "set clipboard=unnamedplus
@@ -80,16 +122,7 @@ map ? \ci <Down>
 nnoremap F :/<C-R><C-W><CR>
 set hlsearch
 
-" ===========YCM START
-let g:ycm_global_ycm_extra_conf = "~/.vim/ycm_extra_conf.py"
-let g:ycm_collect_identifiers_from_tags_files = 1
-" ===========Snipmate
-"let g:snips_trigger_key = '<C-Space>'
-"imap <C-Space> <Plug>snipMateTrigger
-"imap <C-Space> <Plug>snipMateNextOrTrigger
-
-"let g:snips_trigger_key = '<Space>'
-"let g:snips_trigger_key_backwards = '<Space-B>'
+map <C-u> :call cscope#findInteractive(expand('<cword>'))<CR>
 "
 " ===========Ultisnips
 "
@@ -104,6 +137,7 @@ let g:UltiSnipsEditSplit="vertical"
 " ===========Nerdtree
 let NERDTreeDirArrows=0
 nmap <silent> <c-n> :NERDTreeToggle<CR>
+autocmd VimLeave * NERDTreeClose
 autocmd VimEnter * NERDTreeToggle
 let NERDTreeShowLineNumbers=1
 
@@ -134,6 +168,22 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11'                                                                                                                                                                                                                                                                                                                      
 "
-let g:syntastic_cpp_include_dirs = ['/g/g92/uswickra/Caliper/src/**']
-let g:syntastic_cpp_check_header = 1
+"let g:syntastic_cpp_include_dirs = ['/g/g92/uswickra/Caliper/src/**']
+"let g:syntastic_cpp_include_dirs = ['/u/uswickra/hpx/hpx-libnbc/hpx/include/**']
+"let g:syntastic_cpp_check_header = 1
 
+" Autoformat
+let g:formatdef_clangformat_objc = '"clang-format -style=file"'
+
+"==================== gitglutter
+"autocmd VimEnter * GitGutterLineHighlightsEnable
+nmap <C-c> :GitGutterRevertHunk<CR>
+
+"=================== startify 
+autocmd User Startified setlocal buftype=
+
+"==================== taglist
+nmap <F8> :TagbarToggle<CR>
+"nmap <F8> :TlistToggle<CR>
+"let Tlist_Use_Right_Window   = 1
+set number
