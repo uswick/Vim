@@ -58,7 +58,7 @@ filetype plugin indent on
 "colorscheme github
 "colorscheme gruvbox
 "set background=dark 
-color dracula
+"color dracula
 
 set tags=./tags,./src/tags,tags;$HOME
 
@@ -165,8 +165,14 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 "
+let g:syntastic_c_compiler = 'gcc'
+"let g:syntastic_c_compiler_options = ' -std=c11'
+let g:syntastic_c_compiler_options = ' -std=c11'
+"let g:syntastic_c_remove_include_errors = 1
+
 let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11'                                                                                                                                                                                                                                                                                                                      
+let g:syntastic_cpp_compiler_options = ' -std=c++11' 
+"let g:syntastic_cpp_remove_include_errors = 1
 "
 "let g:syntastic_cpp_include_dirs = ['/g/g92/uswickra/Caliper/src/**']
 "let g:syntastic_cpp_include_dirs = ['/u/uswickra/hpx/hpx-libnbc/hpx/include/**']

@@ -1,6 +1,7 @@
 #!/bin/bash
-CLANG_COMPL_FILE=.syntastic_cpp_config
-SYNTASTIC_CPP_CONF_FILE=.clang_complete
+CLANG_COMPL_FILE=.clang_complete
+SYNTASTIC_CPP_CONF_FILE=.syntastic_cpp_config
+SYNTASTIC_C_CONF_FILE=.syntastic_c_config
 C_STD=gnu++11
 
 echo "enter include dir(s) and press [ENTER]:"
@@ -19,7 +20,7 @@ cat <<EOF > clang.tmp
 -Wl,/foo
 -Werror
 -Wall
--std=gnu++11
+-std=${C_STD}
 -I .
 EOF
 
@@ -78,5 +79,6 @@ for f in ${all[@]}; do
 	fi
 done
 
-mv syn.tmp ${SYNTASTIC_CPP_CONF_FILE}
+cp syn.tmp ${SYNTASTIC_CPP_CONF_FILE}
+mv syn.tmp ${SYNTASTIC_C_CONF_FILE}
 mv clang.tmp ${CLANG_COMPL_FILE}
