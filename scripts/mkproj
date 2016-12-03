@@ -82,3 +82,5 @@ done
 cp syn.tmp ${SYNTASTIC_CPP_CONF_FILE}
 mv syn.tmp ${SYNTASTIC_C_CONF_FILE}
 mv clang.tmp ${CLANG_COMPL_FILE}
+#create ctags
+ctags -R *
