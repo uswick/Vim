@@ -198,7 +198,8 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11'
 "let g:formatdef_clangformat_objc = '"clang-format -style=~/.vim/clang_format2"'
 
 "===========clang complete
-let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+"let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+let g:clang_library_path = '/usr/lib/i386-linux-gnu'
 " fix bug on press to Enter
 let g:AutoPairsMapCR = 0
 imap <silent><CR> <CR><Plug>AutoPairsReturn
