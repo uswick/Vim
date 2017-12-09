@@ -44,6 +44,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'majutsushi/tagbar'
 "Plugin 'vim-scripts/taglist.vim'
 Plugin  'mrtazz/DoxygenToolkit.vim'
+Plugin  'brooth/far.vim'
 
 " " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -80,7 +81,13 @@ let CURR_PROJ="/u/uswickra/hpx/hpx-libnbc/sw_coll/hpx"
 map <silent> <C-g> g<C-]>
 map <silent> <C-h> <C-w><C-]><C-w>T
 "nnoremap Q :vimgrep "<C-R><C-W>"/u/uswickra/hpx/libnbc-photon/libNBC-1.0.1/**/*.{c,h,cpp,hpp}<CR>:cw<CR>
-nnoremap Q :vimgrep "<C-R><C-W>"/u/uswickra/hpx/hpx-libnbc/hpx/**/*.{c,h}<CR>:cw<CR>
+"nnoremap Q :vimgrep "<C-R><C-W>"./**/*.{c,h}<CR>:cw<CR>
+"nnoremap Q :Far "<C-R><C-W>" REPL ./**/*.{c,h}
+
+" Far Search and replace
+nnoremap <C-j> :Far <C-R><C-W> REPL ./**/*.*
+nnoremap Q :Fardo<CR>:cw<CR> 
+
 nnoremap <C-f> :%s/\<<C-r><C-w>\>/
 nnoremap <S-Down> ddp
 nnoremap <S-Up> dd<Up>P
@@ -193,6 +200,9 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11'
 "let g:syntastic_cpp_include_dirs = ['/g/g92/uswickra/Caliper/src/**']
 "let g:syntastic_cpp_include_dirs = ['/u/uswickra/hpx/hpx-libnbc/hpx/include/**']
 "let g:syntastic_cpp_check_header = 1
+
+let g:syntastic_quiet_messages = {"file:p":  ['include/hpx/builtins.h'] }
+
 
 " Autoformat
 "let g:formatdef_clangformat_objc = '"clang-format -style=~/.vim/clang_format2"'
