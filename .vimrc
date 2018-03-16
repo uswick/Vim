@@ -85,7 +85,8 @@ map <silent> <C-h> <C-w><C-]><C-w>T
 "nnoremap Q :Far "<C-R><C-W>" REPL ./**/*.{c,h}
 
 " Far Search and replace
-nnoremap <C-j> :Far <C-R><C-W> REPL ./**/*.*
+nnoremap <C-j> :Far <C-R><C-W> <C-R><C-W> ./**/*.*
+nnoremap <C-k> :Far \<<C-R><C-W>\> \<<C-R><C-W>\> ./**/*.*
 nnoremap Q :Fardo<CR>:cw<CR> 
 
 nnoremap <C-f> :%s/\<<C-r><C-w>\>/
