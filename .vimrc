@@ -174,6 +174,7 @@ let g:clang_format#style_options = {
 
 "noremap <C-L> :ClangFormat<CR>
 autocmd FileType c,cpp,objc,h,hpp,C nnoremap <C-L> :ClangFormat<CR>
+autocmd FileType c,cpp,objc,h,hpp,C vnoremap <C-L> :ClangFormat<CR>
 "
 " ===========EnhancedCPPHighlight
 let g:cpp_class_scope_highlight = 1
@@ -240,6 +241,25 @@ let g:DoxygenToolkit_authorName="Udayanga Wickramasinghe"
 noremap <F5> :Dox<CR>
 noremap <F6> :DoxLic<CR>:DoxAuthor<CR>
 
+"================= Mapping keys for copy/pasting to/from registers
+vnoremap 1 "ay
+vnoremap 2 "by
+vnoremap 3 "cy
+vnoremap 4 "dy
+vnoremap 5 "ey
+vnoremap 6 "fy
+vnoremap 7 "gy
+vnoremap 8 "hy
+vnoremap 9 "iy
+vnoremap 0 "jy
 
-
-
+noremap 1p "ap
+noremap 2p "bp
+noremap 3p "cp
+noremap 4p "dp
+noremap 5p "ep
+noremap 6p "fp
+noremap 7p "gp
+noremap 8p "hp
+noremap 9p "ip
+noremap 0p "jp
