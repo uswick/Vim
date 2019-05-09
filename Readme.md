@@ -156,3 +156,9 @@ Ctrl + D ==> duplicate line
 Ctrl + c   ==> copy/paste
 Ctrl + v 
 
+Atom INSTALL for VIM LIKE Functions
+===================================
+https://atom.io/
+apm install vim-mode-plus ex-mode cursor-history autocomplete-plus atom-ctags
+
+
