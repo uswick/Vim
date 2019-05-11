@@ -137,9 +137,9 @@ map <C-u> :call cscope#findInteractive(expand('<cword>'))<CR>
 "
 " ===========Ultisnips
 "
-let g:UltiSnipsExpandTrigger="<c-space>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<C-x>"
+let g:UltiSnipsJumpForwardTrigger="<C-b>"
+let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -210,7 +210,8 @@ let g:syntastic_quiet_messages = {"file:p":  ['include/hpx/builtins.h'] }
 "let g:formatdef_clangformat_objc = '"clang-format -style=~/.vim/clang_format2"'
 
 "===========clang complete
-let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+"let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+let g:clang_library_path = '/usr/lib/clang/3.8.0/lib/'
 " fix bug on press to Enter
 let g:AutoPairsMapCR = 0
 imap <silent><CR> <CR><Plug>AutoPairsReturn
