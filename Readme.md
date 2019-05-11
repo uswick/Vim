@@ -4,6 +4,13 @@ Following is a guide on how to setup Vim 7.4 with YCM/Syntastic and the usage
 SETUP
 ======
 
+VIM with Python 3
+=================
+
+./configure --with-features=huge --enable-tclinterp --enable-multibyte --enable-rubyinterp  --enable-luainterp --enable-gui=gtk2 --enable-python3interp --enable-cscope --enable-gnome-check --prefix=$PWD/BUILD
+
+make -j 4 install
+
 Install Python
 ===============
 get python 2.7.x (ie:- 2.7.10)
