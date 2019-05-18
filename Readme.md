@@ -7,6 +7,26 @@ You have to setup syntastic for proper c/c++ autocompletion
 
 ## Shortcuts
 
+### In-Editor
+
+Keys         | Description
+------------ | -------------
+F8           | Class/Structure View (code)
+F4/5         | Copyright/Function definition
+(Ctrl+x)+(Ctrl+o) |  format code  (gg=G for crude formatting)
+Ctrl + j | Search all files (Far)
+Ctrl + f | Search/refactor
+Ctrl + space | Auto code Snippets
+Shift + W | expand region
+Shift + Q |  code usage
+Shift + Up |  move line up
+Shift + Down |  move line down
+Ctrl  + L |  format code  (gg=G for crude formatting)
+Ctrl + g |  jump to definition/declearation (uses ctags, do 'ctags -R . *'
+Ctrl + D |  duplicate line
+Ctrl + c   |  copy/paste
+Ctrl + v   | 
+
 ### Navigate 
 
 Keys         | Description
@@ -60,22 +80,7 @@ Keys         | Description
 Ctrl + w + up/left/down/right arrow | navigate splits
 Ctrl + wT | move split to own tab
 
-### Misc
 
-Keys         | Description
------------- | -------------
-F8           | Class/Structure View (code)
-F4/5         | Copyright/Function definition
-Shift + W | expand region
-Shift + Q |  code usage
-Shift + Up |  move line up
-Shift + Down |  move line down
-Ctrl  + L |  format code  (gg=G for crude formatting)
-Ctrl + g |  jump to definition/declearation (uses ctags, do 'ctags -R . *'
-Ctrl + F |  refactor
-Ctrl + D |  duplicate line
-Ctrl + c   |  copy/paste
-Ctrl + v   | 
 
 
 # HARD SETUP
