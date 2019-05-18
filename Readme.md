@@ -27,6 +27,8 @@ $ less .syntastic_c_config
 
 2. In `.vimrc` set `let g:clang_library_path = '/path/to/libclang'`
 
+3. For OSX set `let g:UltiSnipsExpandTrigger="<C-space>"`
+
 ### Debug `Syntastic` 
 Use following commands inside vim for debugging.
 ```bash
