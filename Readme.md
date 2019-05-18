@@ -1,5 +1,5 @@
 # EASY SETUP
-Branch `05_19` VIM is self contained with plugins -- so you don't need to install Vundle/plugins.
+In `master` and branch `05_19`, VIM is self contained with plugins -- so you don't need to install Vundle/plugins.
 YCM is disabled because of too much overhead and time to fix it for each platform!
 However, if you wish you may still setup vim from source, install plugins and YCM from below instructions (goto `Hard Setup`).
 
@@ -169,20 +169,12 @@ Include vim 7.4 / clang/llvm and python into PATH and LD_LIBRARY_PATH
 
 //to fix backspace bug
 
-stty erase '^?'
-
-export PATH=/g/g92/uswickra/vim74/install/bin:$PATH
-
-export PATH=/g/g92/uswickra/LLVM_ROOT/bin:$PATH
-
-export PATH=/usr/local/tools/python-2.7.7/bin:$PATH
-
-export LD_LIBRARY_PATH=/usr/local/tools/python-2.7.7/lib:$LD_LIBRARY_PATH
-
-export LD_LIBRARY_PATH=/g/g92/uswickra/LLVM_ROOT/lib:$LD_LIBRARY_PATH
-
-
-
-
-
+```bash
+$ stty erase '^?'
+$ export PATH=/g/g92/uswickra/vim74/install/bin:$PATH
+$ export PATH=/g/g92/uswickra/LLVM_ROOT/bin:$PATH
+$ export PATH=/usr/local/tools/python-2.7.7/bin:$PATH
+$ export LD_LIBRARY_PATH=/usr/local/tools/python-2.7.7/lib:$LD_LIBRARY_PATH
+$ export LD_LIBRARY_PATH=/g/g92/uswickra/LLVM_ROOT/lib:$LD_LIBRARY_PATH
+```
 
