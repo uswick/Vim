@@ -5,17 +5,14 @@ However, if you wish you may still setup vim from source, install plugins and YC
 
 You have to setup syntastic for proper c/c++ syntax checking and clang library path for clang autocompletion support.
 
-1. Setup scripts for syntastic
+1. First Setup scripts for syntastic -- For large projets syntastic scripts could generate `.syntastic_c_config` and `.syntastic_cpp_config` files. It will generate better config files if a `.syntastic_cbuild` file is available under project root directory. `.syntastic_cbuild` contains compile flags and options in one line. (i.e. use verbose option in make or cmake build to extract it) 
 ```bash
 $ export PATH=~/.vim/scripts/:$PATH
-```
-
-2. For large projets syntastic scripts could generate `.syntastic_c_config` and `.syntastic_cpp_config` files. It will generate better config files if a `.syntastic_cbuild` file is available under project root directory. `.syntastic_cbuild` contains compile flags and options in one line. (i.e. use verbose option in make or cmake build to extract it) 
-```bash
 $ mkproj
+$ .syntastic_cbuild found! generating...done
 ```
 
-3. In `.vimrc` set `let g:clang_library_path = '/path/to/libclang'`
+2. In `.vimrc` set `let g:clang_library_path = '/path/to/libclang'`
 ```bash
 $ cat .syntastic_cbuild
 $ -fsyntax-only -std=gnu99 -I. -I.. -Iinclude -Iincludes -I../include -I../includes -I/mytrees/path/core/. -m64 -O1 -fomit-frame-pointer -fno-align-functions -fno-align-jumps -fno-align-loops -fno-align-labels -fno-reorder-blocks -fno-reorder-blocks-and-partition -fno-prefetch-loop-arrays -fno-tree-vect-loop-version -fno-inline-functions-called-once -fno-function-cse -fno-unsafe-loop-optimizations -Wchar-subscripts -Wcast-align -Wcomment -Wdisabled-optimization -Wextra -Wformat -Wno-unused-parameter -Wformat-security -Wimplicit -Winit-self -Wmain -Wmissing-braces -Wmissing-declarations -Wmissing-field-initializers -Wmissing-prototypes -Wnonnull -Wparentheses -Wpointer-sign -Wreturn-type -Wsequence-point -Wsign-compare -Wstrict-aliasing=2 -Wstrict-prototypes -Wswitch -Wunused-function -Wunused-label -Wunused-variable -Wvolatile-register-var -Wwrite-strings -W -Wdeclaration-after-statement -std=gnu89 -Wno-unused-parameter -Wpointer-arith -mcmodel=medium -mlarge-data-threshold=1073741824  -I../build/gobuild/path/
