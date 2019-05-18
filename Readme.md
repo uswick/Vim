@@ -5,7 +5,7 @@ However, if you wish you may still setup vim from source, install plugins and YC
 
 You have to setup syntastic for proper c/c++ syntax checking and clang library path for clang autocompletion support.
 
-1. First Setup scripts for syntastic -- For large projets syntastic scripts could generate `.syntastic_c_config` and `.syntastic_cpp_config` files. It will generate better config files if a `.syntastic_cbuild` file is available under project root directory. `.syntastic_cbuild` contains compile flags and options in one line. (i.e. use verbose option in make or cmake build to extract it) 
+1. First Setup scripts for syntastic - For large projets syntastic scripts could generate `.syntastic_c_config` and `.syntastic_cpp_config` files. It will generate better config files if a `.syntastic_cbuild` file is available under project root directory. `.syntastic_cbuild` contains compile flags and options in one line. (i.e. use verbose option in make or cmake build to extract it) 
 ```bash
 $ export PATH=~/.vim/scripts/:$PATH
 $ mkproj
