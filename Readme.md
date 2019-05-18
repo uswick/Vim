@@ -41,8 +41,7 @@ make VIMRUNTIMEDIR=/g/g92/uswickra/vim74
 make install
 
 ## Install Vundle
-==============
-follow [Vundle][https://github.com/VundleVim/Vundle.vim] git doc
+follow [https://github.com/VundleVim/Vundle.vim] git doc
 
 ## Install YCM
 
@@ -68,7 +67,6 @@ cmake -G "Unix Makefiles" -DCMAKE_C_COMPILER=/usr/apps/gnu/4.9.2/bin/gcc -DCMAKE
 make ycm_support_libs
 
 ## Bash Profile Entries
-=======================
 Include vim 7.4 / clang/llvm and python into PATH and LD_LIBRARY_PATH
 
 //to fix backspace bug
@@ -161,25 +159,15 @@ Ctrl + wT | move split to own tab
 Keys         | Description
 ------------ | -------------
 F8           | Class/Structure View (code)
-
 F4/5         | Copyright/Function definition
-
 Shift + W | expand region
-
 Shift + Q |  code usage
-
 Shift + Up |  move line up
-
 Shift + Down |  move line down
-
 Ctrl  + L |  format code  (gg=G for crude formatting)
-
 Ctrl + g |  jump to definition/declearation (uses ctags, do 'ctags -R . *'
-
 Ctrl + F |  refactor
-
 Ctrl + D |  duplicate line
-
 Ctrl + c   |  copy/paste
 Ctrl + v   | 
 
