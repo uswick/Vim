@@ -1,4 +1,3 @@
-==========
 EASY SETUP
 ==========
 
@@ -10,7 +9,7 @@ You have to setup syntastic for proper c/c++ autocompletion
 
 
 
-==========
+
 HARD SETUP
 ==========
 Following is a guide on how to setup Vim 7.4 with YCM/Syntastic and the usage
