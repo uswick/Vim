@@ -36,7 +36,7 @@ Use following commands inside vim for debugging.
 
 ## Shortcuts
 
-### In-Editor
+### `In-Editor`
 
 Keys         | Description
 ------------ | -------------
