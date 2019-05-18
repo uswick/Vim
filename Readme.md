@@ -11,6 +11,9 @@ $ export PATH=~/.vim/scripts/:$PATH
 ```
 
 2. For large projets syntastic scripts could generate `.syntastic_c_config` and `.syntastic_cpp_config` files. It will generate better config files if a `.syntastic_cbuild` file is available under project root directory. `.syntastic_cbuild` contains compile flags and options in one line. (i.e. use verbose option in make or cmake build to extract it) 
+```bash
+$ mkproj
+```
 
 3. In `.vimrc` set `let g:clang_library_path = '/path/to/libclang'`
 ```bash
