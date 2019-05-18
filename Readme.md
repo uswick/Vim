@@ -5,7 +5,77 @@ However, if you wish you may still setup vim from source, install plugins and YC
 
 You have to setup syntastic for proper c/c++ autocompletion
 
+## Shortcuts
 
+### Navigate 
+
+Keys         | Description
+------------ | -------------
+Ctrl + I | navigate fwd page/windw
+Ctrl + O | navigate back page/windw
+Shift + ] | scroll down page
+Shift + [ | scroll up page
+
+### Navigate-Nerd tree 
+
+Keys         | Description
+------------ | -------------
+Shift + N | open new tab
+Shift + R | update tree for any new files
+t | open file under cursor in new tab
+Enter | open in the same tab
+Ctrl + W + arrow_key | navigate tabs
+
+#### Tabs
+
+Keys         | Description
+------------ | -------------
+:tabe | open tab for edit
+gt | go to next tab
+gT | go to prev tab
+
+
+### Format code
+
+Keys         | Description
+------------ | -------------
+Ctrl + L   | format code selection <visual mode> or whole panel
+
+#### depreicated 
+gg=G
+
+### Go to file
+
+Keys         | Description
+------------ | -------------
+gf | go to file on the cursor
+
+
+### Split File
+
+Keys         | Description
+------------ | -------------
+:sp | horiz
+:vsp | vertical
+Ctrl + w + up/left/down/right arrow | navigate splits
+Ctrl + wT | move split to own tab
+
+### Misc
+
+Keys         | Description
+------------ | -------------
+F8           | Class/Structure View (code)
+F4/5         | Copyright/Function definition
+Shift + W | expand region
+Shift + Q |  code usage
+Shift + Up |  move line up
+Shift + Down |  move line down
+Ctrl  + L |  format code  (gg=G for crude formatting)
+Ctrl + g |  jump to definition/declearation (uses ctags, do 'ctags -R . *'
+Ctrl + F |  refactor
+Ctrl + D |  duplicate line
+Ctrl + c   |  copy/paste
+Ctrl + v   | 
 
 
 # HARD SETUP
@@ -86,88 +156,5 @@ export LD_LIBRARY_PATH=/g/g92/uswickra/LLVM_ROOT/lib:$LD_LIBRARY_PATH
 
 
 
-## Shortcuts
 
-
-### Navigate 
-
-Keys         | Description
------------- | -------------
-Ctrl + I | navigate fwd page/windw
-
-Ctrl + O | navigate back page/windw
-
-Shift + ] | scroll down page
-
-Shift + [ | scroll up page
-
-### Navigate-Nerd tree 
-
-Keys         | Description
------------- | -------------
-Shift + N | open new tab
-
-Shift + R | update tree for any new files
-
-t | open file under cursor in new tab
-
-Enter | open in the same tab
-
-Ctrl + W + arrow_key | navigate tabs
-
-#### Tabs
-
-Keys         | Description
------------- | -------------
-:tabe | open tab for edit
-
-gt | go to next tab
-
-gT | go to prev tab
-
-
-### Format code
-
-Keys         | Description
------------- | -------------
-Ctrl + L   | format code selection <visual mode> or whole panel
-
-#### depreicated 
-gg=G
-
-### Go to file
-
-Keys         | Description
------------- | -------------
-gf | go to file on the cursor
-
-
-### Split File
-
-Keys         | Description
------------- | -------------
-:sp | horiz
-
-:vsp | vertical
-
-Ctrl + w + up/left/down/right arrow | navigate splits
-
-Ctrl + wT | move split to own tab
-
-### Misc
-
-Keys         | Description
------------- | -------------
-F8           | Class/Structure View (code)
-F4/5         | Copyright/Function definition
-Shift + W | expand region
-Shift + Q |  code usage
-Shift + Up |  move line up
-Shift + Down |  move line down
-Ctrl  + L |  format code  (gg=G for crude formatting)
-Ctrl + g |  jump to definition/declearation (uses ctags, do 'ctags -R . *'
-Ctrl + F |  refactor
-Ctrl + D |  duplicate line
-Ctrl + c   |  copy/paste
-Ctrl + v   | 
 
