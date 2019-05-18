@@ -3,6 +3,25 @@ CLANG_COMPL_FILE=.clang_complete
 SYNTASTIC_CPP_CONF_FILE=.syntastic_cpp_config
 SYNTASTIC_C_CONF_FILE=.syntastic_c_config
 C_STD=gnu++11
+BUILDFILE=.syntastic_cbuild
+
+buildfile_result=`find $PWD -name ${BUILDFILE}`
+
+function generate_from_buildfile {
+  echo -n "${BUILDFILE} found! generating..."
+  #cat ${BUILDFILE}
+  tr ' -' '\n-' < ${BUILDFILE} > ${SYNTASTIC_C_CONF_FILE}
+  tr ' -' '\n-' < ${BUILDFILE} > ${SYNTASTIC_CPP_CONF_FILE}
+  echo "done"
+}
+
+
+if [ ! -z $buildfile_result ]; then
+  generate_from_buildfile
+  exit 0
+else
+  echo "${BUILDFILE} NOT found! moving on..."
+fi
 
 echo "enter include dir(s) and press [ENTER]:"
 read dirs

@@ -61,7 +61,7 @@ filetype plugin indent on
 "colorscheme github
 "colorscheme gruvbox
 "set background=dark 
-"color dracula
+" color dracula
 
 
 set tags=./tags,./src/tags,tags;$HOME
@@ -137,7 +137,8 @@ map <C-u> :call cscope#findInteractive(expand('<cword>'))<CR>
 "
 " ===========Ultisnips
 "
-let g:UltiSnipsExpandTrigger="<C-x>"
+"let g:UltiSnipsExpandTrigger="<C-space>"
+let g:UltiSnipsExpandTrigger="<NUL>"
 let g:UltiSnipsJumpForwardTrigger="<C-b>"
 let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 
@@ -191,19 +192,24 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 "
 let g:syntastic_c_compiler = 'gcc'
+"let g:syntastic_c_compiler = 'x86_64-vmk-linux-gnu-gcc'
 "let g:syntastic_c_compiler_options = ' -std=c11'
-let g:syntastic_c_compiler_options = ' -std=c11'
+"let g:syntastic_c_compiler_options = ' -std=c11'
 "let g:syntastic_c_remove_include_errors = 1
 
 let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11' 
+"let g:syntastic_cpp_compiler_options = ' -std=c++11' 
 "let g:syntastic_cpp_remove_include_errors = 1
 "
-"let g:syntastic_cpp_include_dirs = ['/g/g92/uswickra/Caliper/src/**']
+"let g:syntastic_cpp_include_dirs = ['/mytrees/uwickramasin-main-1/bora/vmcore/**']
+"let g:syntastic_c_include_dirs = ['/mytrees/uwickramasin-main-1/bora/vmcore/**', '/mytrees/testc/frobos/lib']
+"let g:syntastic_c_include_dirs = ['/mytrees/uwickramasin-main-1/bora/vmcore/**', '/mytrees/testc/frobos/lib']
 "let g:syntastic_cpp_include_dirs = ['/u/uswickra/hpx/hpx-libnbc/hpx/include/**']
 "let g:syntastic_cpp_check_header = 1
 
 let g:syntastic_quiet_messages = {"file:p":  ['include/hpx/builtins.h'] }
+let g:syntastic_cpp_config_file = '.syntastic_cpp_config'
+let g:syntastic_c_config_file = '.syntastic_c_config'
 
 
 " Autoformat
@@ -211,7 +217,8 @@ let g:syntastic_quiet_messages = {"file:p":  ['include/hpx/builtins.h'] }
 
 "===========clang complete
 "let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
-let g:clang_library_path = '/usr/lib/clang/3.8.0/lib/'
+"let g:clang_library_path = '/usr/lib/clang/3.8.0/lib/'
+let g:clang_library_path = '/usr/lib/x86_64-linux-gnu'
 " fix bug on press to Enter
 let g:AutoPairsMapCR = 0
 imap <silent><CR> <CR><Plug>AutoPairsReturn
@@ -229,7 +236,7 @@ nmap <F8> :TagbarToggle<CR>
 "let Tlist_Use_Right_Window   = 1
 set number
 
-
+set statusline+=%F
 "================== Doxygen
 let g:DoxygenToolkit_briefTag_pre="@brief "
 let g:DoxygenToolkit_paramTag_pre="@param "
