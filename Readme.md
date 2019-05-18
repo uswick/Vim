@@ -12,15 +12,13 @@ You have to setup syntastic for proper c/c++ autocompletion
 Following is a guide on how to setup Vim 7.4 with YCM/Syntastic and the usage
 
 
-VIM with Python 3
-=================
+## VIM with Python 3
 
 ./configure --with-features=huge --enable-tclinterp --enable-multibyte --enable-rubyinterp  --enable-luainterp --enable-gui=gtk2 --enable-python3interp --enable-cscope --enable-gnome-check --prefix=$PWD/BUILD
 
 make -j 4 install
 
-Install Python
-===============
+### Install Python
 get python 2.7.x (ie:- 2.7.10)
 
 ./configure --prefix= --enable-unicode=ucs2 --enable-shared
@@ -29,9 +27,8 @@ make
 
 make install
 
-Install VIM 7.4
-===============
-download from ftp://ftp.vim.org/pub/vim/unix
+## Install VIM 7.4
+download from [VIM ftp][ftp://ftp.vim.org/pub/vim/unix]
 
 configure with above  Python
 
@@ -43,12 +40,12 @@ make VIMRUNTIMEDIR=/g/g92/uswickra/vim74
 
 make install
 
-Install Vundle
+## Install Vundle
 ==============
-follow git doc
+follow [Vundle][https://github.com/VundleVim/Vundle.vim] git doc
 
-Install YCM
-=============
+## Install YCM
+
 
 Plugin 'Valloric/YouCompleteMe' in ~/.vimrc
 
@@ -56,23 +53,21 @@ go to vim
 
 :PluginInstall
 
-Install clang+llvm 3.6
-=======================
+## Install clang+llvm 3.6
 copy clang to llvm_root/src/tools
 
 cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/g/g92/uswickra/ClangforVim/llvm-3.6.1/install/ -DCMAKE_C_COMPILER=/usr/apps/gnu/4.9.2/bin/gcc -DCMAKE_CXX_COMPILER=/usr/apps/gnu/4.9.2/bin/g++ -DCMAKE_BUILD_TYPE=Release ../
 
 make && make install
 
-Install ycm support libs(use c++11/ 4.7+, python 2.7+)
-=======================================================
+### Install ycm support libs(use c++11/ 4.7+, python 2.7+)
 Note : python library location / paths explicit due to a bug
 
 cmake -G "Unix Makefiles" -DCMAKE_C_COMPILER=/usr/apps/gnu/4.9.2/bin/gcc -DCMAKE_CXX_COMPILER=/usr/apps/gnu/4.9.2/bin/g++ -DPATH_TO_LLVM_ROOT=/g/g92/uswickra/LLVM_ROOT  -DPYTHON_EXECUTABLE=/usr/local/tools/python-2.7.7/bin/python -DPYTHON_LIBRARY=/usr/local/tools/python-2.7.7/lib/libpython2.7.so -DPYTHON_INCLUDE_DIR=/usr/local/tools/python-2.7.7/include/python2.7/ . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
 
 make ycm_support_libs
 
-Bash Profile Entries
+## Bash Profile Entries
 =======================
 Include vim 7.4 / clang/llvm and python into PATH and LD_LIBRARY_PATH
 
@@ -92,82 +87,99 @@ export LD_LIBRARY_PATH=/g/g92/uswickra/LLVM_ROOT/lib:$LD_LIBRARY_PATH
 
 
 
-=============================================================================================================================
-======================
-Shortcuts
-======================
+
+## Shortcuts
 
 
-Navigate 
-=========
+### Navigate 
 
-Ctrl + I = navigate fwd page/windw
+Keys         | Description
+------------ | -------------
+Ctrl + I | navigate fwd page/windw
 
-Ctrl + O = navigate back page/windw
+Ctrl + O | navigate back page/windw
 
-Shift + ] = scroll down page
+Shift + ] | scroll down page
 
-Shift + [ = scroll up page
+Shift + [ | scroll up page
 
-Navigate-Nerd tree 
-==================
+### Navigate-Nerd tree 
 
-s - open new panel
+Keys         | Description
+------------ | -------------
+Shift + N | open new tab
 
-enter - open in the same panel
+Shift + R | update tree for any new files
 
-Ctrl + W + arrow_key = navigate to a panel
+t | open file under cursor in new tab
 
-Tabs
-==========
+Enter | open in the same tab
 
-:tabe == open tab for edit
+Ctrl + W + arrow_key | navigate tabs
 
-gt == go to next tab
+#### Tabs
 
-gT = go to prev tab
+Keys         | Description
+------------ | -------------
+:tabe | open tab for edit
+
+gt | go to next tab
+
+gT | go to prev tab
 
 
-Format code
-=============
+### Format code
 
+Keys         | Description
+------------ | -------------
+Ctrl + L   | format code selection <visual mode> or whole panel
+
+#### depreicated 
 gg=G
 
-Go to file
-============
+### Go to file
 
-gf = go to file on the cursor
+Keys         | Description
+------------ | -------------
+gf | go to file on the cursor
 
 
-Split File
-=============
+### Split File
 
-:sp = horiz
+Keys         | Description
+------------ | -------------
+:sp | horiz
 
-:vsp = vertical
+:vsp | vertical
 
-Ctrl + w + up/left/down/right arrow == navigate splits
+Ctrl + w + up/left/down/right arrow | navigate splits
 
-Ctrl + wT = move split to own tab
+Ctrl + wT | move split to own tab
 
-Custom
-=========
-Shift + W ==> expand region
+### Misc
 
-Shift + Q ==> code usage
+Keys         | Description
+------------ | -------------
+F8           | Class/Structure View (code)
 
-Shift + Up ==> move line up
+F4/5         | Copyright/Function definition
 
-Shift + Down ==> move line down
+Shift + W | expand region
 
-Ctrl  + L = format code  (gg=G for crude formatting)
+Shift + Q |  code usage
 
-Ctrl + g ==> jump to definition/declearation (uses ctags, do 'ctags -R . *'
+Shift + Up |  move line up
 
-Ctrl + F ==> refactor
+Shift + Down |  move line down
 
-Ctrl + D ==> duplicate line
+Ctrl  + L |  format code  (gg=G for crude formatting)
 
-Ctrl + c   ==> copy/paste
-Ctrl + v 
+Ctrl + g |  jump to definition/declearation (uses ctags, do 'ctags -R . *'
+
+Ctrl + F |  refactor
+
+Ctrl + D |  duplicate line
+
+Ctrl + c   |  copy/paste
+Ctrl + v   | 
 
