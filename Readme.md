@@ -138,7 +138,7 @@ configure with above  Python
 
 ./configure --with-features=huge --enable-multibyte --enable-rubyinterp --enable-pythoninterp --with-python-config-dir=/g/g92/uswickra/Python-2.7.10/install/lib/python2.7/config --enable-perlinterp --enable-luainterp --enable-gui=gtk2 --enable-cscope --prefix=/g/g92/uswickra/vim74/install/
 
-make VIMRUNTIMEDIR=/g/g92/uswickra/vim74
+make VIMRUNTIMEDIR=/g/g92/uswickra/vim74/runtime
 
 (edit src/Makefile prefix variable if install location is not standard!)
 
