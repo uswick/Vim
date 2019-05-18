@@ -1,6 +1,4 @@
-EASY SETUP
-==========
-
+# EASY SETUP
 Branch `05_19` VIM is self contained with plugins -- so you don't need to install Vundle/plugins.
 YCM is disabled because of too much overhead and time to fix it for each platform!
 However, if you wish you may still setup vim from source, install plugins and YCM from below instructions (goto `Hard Setup`).
@@ -10,8 +8,7 @@ You have to setup syntastic for proper c/c++ autocompletion
 
 
 
-HARD SETUP
-==========
+# HARD SETUP
 Following is a guide on how to setup Vim 7.4 with YCM/Syntastic and the usage
 
 
