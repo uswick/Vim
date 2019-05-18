@@ -27,7 +27,7 @@ $ less .syntastic_c_config
 
 2. In `.vimrc` set `let g:clang_library_path = '/path/to/libclang'`
 
-### Debug Syntastic 
+### Debug `Syntastic` 
 Use following commands inside vim for debugging.
 ```bash
 :let g:syntastic_debug=3
