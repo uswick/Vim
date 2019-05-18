@@ -2,6 +2,8 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 set backspace=indent,eol,start
 
+syntax on
+color dracula
 " ===========Vundle START
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -195,13 +197,13 @@ let g:syntastic_c_compiler = 'gcc'
 "let g:syntastic_c_compiler = 'x86_64-vmk-linux-gnu-gcc'
 "let g:syntastic_c_compiler_options = ' -std=c11'
 "let g:syntastic_c_compiler_options = ' -std=c11'
-"let g:syntastic_c_remove_include_errors = 1
+let g:syntastic_c_remove_include_errors = 1
 
 let g:syntastic_cpp_compiler = 'g++'
 "let g:syntastic_cpp_compiler_options = ' -std=c++11' 
-"let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_remove_include_errors = 1
 "
-"let g:syntastic_cpp_include_dirs = ['/mytrees/uwickramasin-main-1/bora/vmcore/**']
+let g:syntastic_cpp_include_dirs = ['/mytrees/uwickramasin-main-1/bora/vmcore/**']
 "let g:syntastic_c_include_dirs = ['/mytrees/uwickramasin-main-1/bora/vmcore/**', '/mytrees/testc/frobos/lib']
 "let g:syntastic_c_include_dirs = ['/mytrees/uwickramasin-main-1/bora/vmcore/**', '/mytrees/testc/frobos/lib']
 "let g:syntastic_cpp_include_dirs = ['/u/uswickra/hpx/hpx-libnbc/hpx/include/**']
