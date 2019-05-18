@@ -13,7 +13,7 @@ Keys         | Description
 ------------ | -------------
 F8           | Class/Structure View (code)
 F4/5         | Copyright/Function definition
-(Ctrl+x)+(Ctrl+o) |  format code  (gg=G for crude formatting)
+(Ctrl+x)+(Ctrl+o) |  auto complete
 Ctrl + j | Search all files (Far)
 Ctrl + f | Search/refactor
 Ctrl + space | Auto code Snippets
