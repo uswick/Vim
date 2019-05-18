@@ -177,9 +177,3 @@ $ export PATH=/usr/local/tools/python-2.7.7/bin:$PATH
 $ export LD_LIBRARY_PATH=/usr/local/tools/python-2.7.7/lib:$LD_LIBRARY_PATH
 $ export LD_LIBRARY_PATH=/g/g92/uswickra/LLVM_ROOT/lib:$LD_LIBRARY_PATH
 ```bash
-
-
-
-
-
-
