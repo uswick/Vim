@@ -1,5 +1,5 @@
 # EASY SETUP
-Branch `05_19` VIM is self contained with plugins -- so you don't need to install Vundle/plugins.
+In `master` and branch `05_19`, VIM is self contained with plugins -- so you don't need to install Vundle/plugins.
 YCM is disabled because of too much overhead and time to fix it for each platform!
 However, if you wish you may still setup vim from source, install plugins and YCM from below instructions (goto `Hard Setup`).
 
