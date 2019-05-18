@@ -56,7 +56,7 @@ Ctrl + D |  duplicate line
 Ctrl + c   |  copy/paste
 Ctrl + v   | 
 
-### Navigate 
+### `Navigate` 
 
 Keys         | Description
 ------------ | -------------
@@ -65,7 +65,7 @@ Ctrl + O | navigate back page/windw
 Shift + ] | scroll down page
 Shift + [ | scroll up page
 
-### Navigate-Nerd tree 
+### `Navigate-Nerd tree`
 
 Keys         | Description
 ------------ | -------------
@@ -75,7 +75,7 @@ t | open file under cursor in new tab
 Enter | open in the same tab
 Ctrl + W + arrow_key | navigate tabs
 
-#### Tabs
+#### `Tabs`
 
 Keys         | Description
 ------------ | -------------
@@ -84,23 +84,23 @@ gt | go to next tab
 gT | go to prev tab
 
 
-### Format code
+### `Format code`
 
 Keys         | Description
 ------------ | -------------
 Ctrl + L   | format code selection <visual mode> or whole panel
 
-#### depreicated 
+#### `depreicated`
 gg=G
 
-### Go to file
+### `Go to file`
 
 Keys         | Description
 ------------ | -------------
 gf | go to file on the cursor
 
 
-### Split File
+### `Split File`
 
 Keys         | Description
 ------------ | -------------
