@@ -1,6 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set backspace=indent,eol,start
+set mouse=a
 
 syntax on
 color dracula
