@@ -32,7 +32,7 @@ Plugin 'rhysd/vim-clang-format'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'scrooloose/syntastic'
 
-Plugin 'vim-scripts/cscope.vim'
+"Plugin 'vim-scripts/cscope.vim'
 Plugin 'vim-scripts/Conque-GDB'
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
@@ -136,8 +136,17 @@ nnoremap <c-P> :CtrlPTag<cr>
 nnoremap F :/<C-R><C-W><CR>
 set hlsearch
 
-map <C-u> :call cscope#findInteractive(expand('<cword>'))<CR>
+" ===== CSCOPE========
+"map <C-u> :call cscope#findInteractive(expand('<cword>'))<CR>
+" Not using cscope plugin anymore ; instead plugins/cscope_maps.vim
 "
+" <Ctl-Space> + s = find symbol under cur
+" <Ctl-Space> + c = find callers under cur
+" <Ctl-Space> + d = find called funcs under cur
+" <Ctl-Space> + i = find included under cur
+"
+" <Ctrl-\> s ==> not in a split window, but same window
+" <Ctrl-Space> <Ctrl-Space> s ==> not in a vertical window, but horiz window
 " ===========Ultisnips
 "
 "let g:UltiSnipsExpandTrigger="<C-space>"
