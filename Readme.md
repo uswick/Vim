@@ -86,7 +86,7 @@ $ ctags -R *
 
 To build Cscope Database:
 ```bash
-$ csope -R *
+$ csope -R 
 ```
 
 
