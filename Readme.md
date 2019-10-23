@@ -67,6 +67,29 @@ Ctrl + O | navigate back page/windw
 Shift + ] | scroll down page
 Shift + [ | scroll up page
 
+
+### `Code-Complete`
+
+Keys         | Description
+------------ | -------------
+Ctrl + g     | jump to definition/decl (ctags)
+Ctrl + a     | find assignments to this symbol (cscope)
+Ctrl + s     | find this symbol (cscope)
+Ctrl + c     | find functions calling this func (cscope)
+Ctrl + d     | find functions called by this func (cscope)
+(Ctrl+x)+(Ctrl+o) |  auto complete
+
+To build ctags Database:
+```bash
+$ ctags -R *
+```
+
+To build Cscope Database:
+```bash
+$ csope -R *
+```
+
+
 ### `Navigate-Nerd tree`
 
 Keys         | Description
