@@ -77,6 +77,8 @@ Ctrl + a     | find assignments to this symbol (cscope)
 Ctrl + s     | find this symbol (cscope)
 Ctrl + c     | find functions calling this func (cscope)
 Ctrl + d     | find functions called by this func (cscope)
+(Ctrl+Space) + a  | find assignments to this symbol; open in vertical plane (cscope)
+(Ctrl+Space)(Ctrl+Space) + a  | find assignments to this symbol; open in horizontal plane (cscope)
 (Ctrl+x)+(Ctrl+o) |  auto complete
 
 To build ctags Database:
