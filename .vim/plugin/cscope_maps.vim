@@ -89,15 +89,25 @@ if has("cscope")
     " go back to where you were before the search.  
     "
 
-    nnoremap <C-\>a :cs find a <C-R>=expand("<cword>")<CR><CR>	
-    nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
-    nnoremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
-    nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
-    nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
-    nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
-    nnoremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
-    nnoremap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
+    nnoremap <C-a> :vert scs find a <C-R>=expand("<cword>")<CR><CR>	
+    nnoremap <C-s> :vert scs find s <C-R>=expand("<cword>")<CR><CR>	
+    nnoremap <C-g> :vert scs find g <C-R>=expand("<cword>")<CR><CR>	
+    nnoremap <C-c> :vert scs find c <C-R>=expand("<cword>")<CR><CR>	
+    nnoremap <C-t> :vert scs find t <C-R>=expand("<cword>")<CR><CR>	
+    nnoremap <C-e> :vert scs find e <C-R>=expand("<cword>")<CR><CR>	
+    nnoremap <C-f> :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
+    "nnoremap <C-i> :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nnoremap <C-d> :vert scs find d <C-R>=expand("<cword>")<CR><CR>	
+
+    "nnoremap <C-a> :cs find a <C-R>=expand("<cword>")<CR><CR>	
+    "nnoremap <C-s> :cs find s <C-R>=expand("<cword>")<CR><CR>	
+    "nnoremap <C-g> :cs find g <C-R>=expand("<cword>")<CR><CR>	
+    "nnoremap <C-c> :cs find c <C-R>=expand("<cword>")<CR><CR>	
+    "nnoremap <C-t> :cs find t <C-R>=expand("<cword>")<CR><CR>	
+    "nnoremap <C-e> :cs find e <C-R>=expand("<cword>")<CR><CR>	
+    "nnoremap <C-f> :cs find f <C-R>=expand("<cfile>")<CR><CR>	
+    "nnoremap <C-i> :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    "nnoremap <C-d> :cs find d <C-R>=expand("<cword>")<CR><CR>	
 
 
     " Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type
