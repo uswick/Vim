@@ -33,7 +33,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'scrooloose/syntastic'
 
 "Plugin 'vim-scripts/cscope.vim'
-Plugin 'vim-scripts/Conque-GDB'
+"Plugin 'vim-scripts/Conque-GDB'
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
 "Plugin 'garbas/vim-snipmate'
@@ -82,15 +82,15 @@ let CURR_PROJ="/u/uswickra/hpx/hpx-libnbc/sw_coll/hpx"
 "====== Ctrl + D ==> duplicate line
 "
 map <silent> <C-g> g<C-]>
-map <silent> <C-h> <C-w><C-]><C-w>T
+"map <silent> <C-h> <C-w><C-]><C-w>T
 "nnoremap Q :vimgrep "<C-R><C-W>"/u/uswickra/hpx/libnbc-photon/libNBC-1.0.1/**/*.{c,h,cpp,hpp}<CR>:cw<CR>
 "nnoremap Q :vimgrep "<C-R><C-W>"./**/*.{c,h}<CR>:cw<CR>
 "nnoremap Q :Far "<C-R><C-W>" REPL ./**/*.{c,h}
 
 " Far Search and replace
 nnoremap <C-j> :Far <C-R><C-W> <C-R><C-W> ./**/*.*
-nnoremap <C-k> :Far \<<C-R><C-W>\> \<<C-R><C-W>\> ./**/*.*
-nnoremap Q :Fardo<CR>:cw<CR> 
+"nnoremap <C-k> :Far \<<C-R><C-W>\> \<<C-R><C-W>\> ./**/*.*
+"nnoremap Q :Fardo<CR>:cw<CR> 
 
 nnoremap <C-f> :%s/\<<C-r><C-w>\>/
 nnoremap <S-Down> ddp
@@ -231,13 +231,14 @@ let g:syntastic_c_config_file = '.syntastic_c_config'
 "let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
 "let g:clang_library_path = '/usr/lib/clang/3.8.0/lib/'
 let g:clang_library_path = '/usr/lib/x86_64-linux-gnu'
+"let g:clang_library_path = '/dbc/sc-dbc1221/wickramasinu/LLVM-clang/llvm-project/build/lib'
 " fix bug on press to Enter
 let g:AutoPairsMapCR = 0
 imap <silent><CR> <CR><Plug>AutoPairsReturn
 
 "==================== gitglutter
 "autocmd VimEnter * GitGutterLineHighlightsEnable
-nmap <C-c> :GitGutterRevertHunk<CR>
+"nmap <C-c> :GitGutterRevertHunk<CR>
 
 "=================== startify 
 autocmd User Startified setlocal buftype=
@@ -283,3 +284,64 @@ noremap 7p "gp
 noremap 8p "hp
 noremap 9p "ip
 noremap 0p "jp
+
+if executable('ag')
+	  set grepprg=ag\ --nogroup\ --nocolor
+endif
+
+
+function! MyCustomSearch()
+  let path_term = input("Enter search path (leave blank for current): ")
+  let file_type = input("Enter file type for exclusive type search (leave blank for any) : ")
+  let grep_term = input("Enter search term: ")
+
+  if !empty(file_type)
+    let group = "-G \'\." . file_type . "$\' "
+    echo group
+  else 
+    let group = ""
+  endif  
+
+  if !empty(path_term)
+    echo "Vim searching default path"
+  endif
+
+  if !empty(grep_term)
+    "execute 'silent grep' grep_term path_term group  | copen
+    let cmd = "silent grep " . grep_term . " " . path_term . " " . group
+    execute cmd | copen
+  else
+    echo "Empty search term"
+    let cmd = "silent grep <cword>" . " " . path_term . " " . group
+    echo cmd
+    execute cmd | copen
+    "execute 'silent grep <cword>'  path_term group | copen
+    "execute 'silent grep' <C-R><C-W> | copen
+  endif
+  redraw!
+endfunction
+
+function! TestFunc()
+  let file_type = input("Enter file type for exclusive type search (leave blank for any) : ")
+  let  group = "-G \'\." . file_type . "$\' "
+  echo "This is a test func"
+  echo group
+  redraw!
+endfunction
+
+"nnoremap <C-h> :call MyCustomSearch() \| copen<CR><C-l>
+nnoremap <C-h> :call MyCustomSearch()<CR>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
