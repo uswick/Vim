@@ -89,15 +89,15 @@ if has("cscope")
     " go back to where you were before the search.  
     "
 
-    nnoremap <C-a> :vert scs find a <C-R>=expand("<cword>")<CR><CR>	
+    "nnoremap <C-a> :vert scs find a <C-R>=expand("<cword>")<CR><CR>	
     nnoremap <C-s> :vert scs find s <C-R>=expand("<cword>")<CR><CR>	
     nnoremap <C-g> :vert scs find g <C-R>=expand("<cword>")<CR><CR>	
     nnoremap <C-c> :vert scs find c <C-R>=expand("<cword>")<CR><CR>	
     nnoremap <C-t> :vert scs find t <C-R>=expand("<cword>")<CR><CR>	
     nnoremap <C-e> :vert scs find e <C-R>=expand("<cword>")<CR><CR>	
-    nnoremap <C-f> :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
+    "nnoremap <C-f> :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
     "nnoremap <C-i> :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nnoremap <C-d> :vert scs find d <C-R>=expand("<cword>")<CR><CR>	
+    "nnoremap <C-d> :vert scs find d <C-R>=expand("<cword>")<CR><CR>	
 
     "nnoremap <C-a> :cs find a <C-R>=expand("<cword>")<CR><CR>	
     "nnoremap <C-s> :cs find s <C-R>=expand("<cword>")<CR><CR>	

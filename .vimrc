@@ -2,6 +2,10 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 set backspace=indent,eol,start
 set mouse=a
+set list
+set listchars=tab:>-
+set colorcolumn=80
+
 
 syntax on
 color dracula
@@ -95,7 +99,9 @@ nnoremap <C-j> :Far <C-R><C-W> <C-R><C-W> ./**/*.*
 nnoremap <C-f> :%s/\<<C-r><C-w>\>/
 nnoremap <S-Down> ddp
 nnoremap <S-Up> dd<Up>P
+"nnoremap <DOWN> ddp
 nnoremap <C-d> yyp
+"nnoremap <UP> dd<Up>P
 
 map <C-c> "+y<CR>
 map <C-v> o<Esc>"+gP<CR>
@@ -119,7 +125,8 @@ autocmd VimEnter *
 
 "Ctrlp
 nnoremap <c-]> :CtrlPBufTagAll<cr>
-nnoremap <c-P> :CtrlPTag<cr>
+"nnoremap <c-P> :CtrlPTag<cr>
+nnoremap <c-P> :CtrlPMixed<cr>
 "nnoremap <c-]> :CtrlPtjump<cr>
 "vnoremap <c-]> :CtrlPtjumpVisual<cr>
 
@@ -170,24 +177,6 @@ let NERDTreeShowLineNumbers=1
 map <S-W> <Plug>(expand_region_expand)
 map <S-E> <Plug>(expand_region_shrink)
 
-"
-" ===========AutoFormat
-let g:clang_format#style_options = {
-            \ "AccessModifierOffset" : -4,
-	    \ "AlignAfterOpenBracket": "Align",
-	    \ "AlignConsecutiveAssignments": "true",
-	    \ "AlignConsecutiveDeclarations": "true",
-	    \ "AlignEscapedNewlinesLeft": "true",
-            \ "ColumnLimit" : 80,
-            \ "IndentWidth" : 2,
-            \ "BasedOnStyle" : "Google",
-            \ "AllowShortIfStatementsOnASingleLine" : "true",
-            \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "Standard" : "C++11"}
-
-"noremap <C-L> :ClangFormat<CR>
-autocmd FileType c,cpp,objc,h,hpp,C nnoremap <C-L> :ClangFormat<CR>
-autocmd FileType c,cpp,objc,h,hpp,C vnoremap <C-L> :ClangFormat<CR>
 "
 " ===========EnhancedCPPHighlight
 let g:cpp_class_scope_highlight = 1
@@ -286,7 +275,9 @@ noremap 9p "ip
 noremap 0p "jp
 
 if executable('ag')
-	  set grepprg=ag\ --nogroup\ --nocolor
+	  "set grepprg=ag\ --nogroup\ --nocolor\ --ignore\ '*.out*'\ --ignore\ '*.ld*'\ --ignore\ '*.log*'\ --ignore\ '*.map*'\ --ignore\ '*.patch*'\ --ignore\ '*tags*'\ --ignore\ '*.gdbout*'
+	  set grepprg=ag\ --ignore\ '*.out*'\ --ignore\ '*.ld*'\ --ignore\ '*.log*'\ --ignore\ '*.map*'\ --ignore\ '*.patch*'\ --ignore\ '*tags*'\ --ignore\ '*.gdbout*'
+	  "set grepprg=ag\ --nogroup\ --nocolor
 endif
 
 
@@ -329,13 +320,46 @@ function! TestFunc()
   redraw!
 endfunction
 
+
+function! LocalHighlightTrails()
+  "exec "norm ="
+  highlight ExtraWhitespace ctermbg=red guibg=red
+  match ExtraWhitespace /\s\+$/
+  "redraw!
+endfunction
+
 "nnoremap <C-h> :call MyCustomSearch() \| copen<CR><C-l>
 nnoremap <C-h> :call MyCustomSearch()<CR>
+"nnoremap <C-k> :call LocalHighlightTrails()<CR>
+nnoremap <C-k> :call LocalHighlightTrails()<CR>
+vmap <C-k> =:call LocalHighlightTrails()<CR>:echo "Vim Indent Formatting Done!"<CR>
+"
+" ===========AutoFormat
+"let g:clang_format#style_options = {
+            "\ "AccessModifierOffset" : -4,
+		 "\ "AlignAfterOpenBracket": "Align",
+		 "\ "AlignConsecutiveAssignments": "true",
+		 "\ "AlignConsecutiveDeclarations": "true",
+		 "\ "AlignEscapedNewlinesLeft": "true",
+            "\ "ColumnLimit" : 80,
+            "\ "IndentWidth" : 2,
+            "\ "BasedOnStyle" : "Google",
+            "\ "AllowShortIfStatementsOnASingleLine" : "true",
+            "\ "AlwaysBreakTemplateDeclarations" : "true",
+            "\ "Standard" : "C++11"}
+
+let g:clang_format#detect_style_file = 1
+"noremap <C-L> :ClangFormat<CR>
+autocmd FileType c,cpp,objc,h,hpp,C nnoremap <C-l> :ClangFormat<CR>:call LocalHighlightTrails()<CR>
+autocmd FileType c,cpp,objc,h,hpp,C vnoremap <C-l> :ClangFormat<CR>:call LocalHighlightTrails()<CR>
 
 
+highlight ColorColumn ctermbg=lightgrey guibg=red
 
-
-
+set smartindent
+set tabstop=3
+set shiftwidth=3
+set expandtab
 
 
 

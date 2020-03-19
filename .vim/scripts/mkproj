@@ -103,5 +103,13 @@ mv syn.tmp ${SYNTASTIC_C_CONF_FILE}
 mv clang.tmp ${CLANG_COMPL_FILE}
 #create ctags
 ctags -R *
-cscope -R
+
+
+if [ -f $PWD/cscope.files  ]; then
+ cscope -R -i cscope.files -q -k
+else
+ find $PWD -name "*.[chxsS]" -print > cscope.files && cscope -R -i cscope.files -q -k
+fi
+
+#cscope -R
 #cscope -R -s ../
