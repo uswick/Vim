@@ -7,8 +7,25 @@ set listchars=tab:>-
 set colorcolumn=80
 
 
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
 syntax on
-color dracula
+"color dracula
+color onedark
 " ===========Vundle START
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -108,7 +125,7 @@ map <C-v> o<Esc>"+gP<CR>
 "map nerd commenter
 map ? \ci <Down>
 
-nnoremap <S-n> :tabe<CR>
+nnoremap <S-n> :tabe %<CR>
 "nnoremap <S->m> :set number<CR>
 
 "sessions
@@ -123,13 +140,23 @@ autocmd VimEnter *
                 \ |   wincmd w
                 \ | endif
 
+
+
 "Ctrlp
 nnoremap <c-]> :CtrlPBufTagAll<cr>
 "nnoremap <c-P> :CtrlPTag<cr>
-nnoremap <c-P> :CtrlPMixed<cr>
+"map <c-p> :CtrlPMixed<CR>:echo "CtrlPMixed Executed..."<CR>
+"nnoremap <c-P> :CtrlPMixed<CR>:echo "CtrlPMixed Executed..."<CR>
 "nnoremap <c-]> :CtrlPtjump<cr>
 "vnoremap <c-]> :CtrlPtjumpVisual<cr>
+"let g:ctrlp_cmd = 'CtrlPMixed'
+"let g:ctrlp_root_markers = ['build']
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$|vendor\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|build\|data\|log\|tmp$',
+  \ 'file': '\.d$\|\.so$\|\.dat$'
+  \ }
 
+"let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 "behave mswin
 "set clipboard=unnamedplus
 "smap <Del> <C-g>"_d
@@ -187,16 +214,22 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_auto_jump = 0
+
 "
 let g:syntastic_c_compiler = 'gcc'
 "let g:syntastic_c_compiler = 'x86_64-vmk-linux-gnu-gcc'
 "let g:syntastic_c_compiler_options = ' -std=c11'
 "let g:syntastic_c_compiler_options = ' -std=c11'
-let g:syntastic_c_remove_include_errors = 1
+let g:syntastic_c_remove_include_errors = 0
 
 let g:syntastic_cpp_compiler = 'g++'
 "let g:syntastic_cpp_compiler_options = ' -std=c++11' 
@@ -219,7 +252,8 @@ let g:syntastic_c_config_file = '.syntastic_c_config'
 "===========clang complete
 "let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
 "let g:clang_library_path = '/usr/lib/clang/3.8.0/lib/'
-let g:clang_library_path = '/usr/lib/x86_64-linux-gnu'
+"let g:clang_library_path = '/usr/lib/x86_64-linux-gnu'
+let g:clang_library_path = '/usr/lib/x86_64-linux-gnu/'
 "let g:clang_library_path = '/dbc/sc-dbc1221/wickramasinu/LLVM-clang/llvm-project/build/lib'
 " fix bug on press to Enter
 let g:AutoPairsMapCR = 0
@@ -280,8 +314,14 @@ if executable('ag')
 	  "set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-
+" Search examples  ==>
+" Enter search term: \#\#[.]*_start
+" This will find all strings with ##[any char 0-more times]_start ;
+" capitalization ignored
+" Enter search term: \#\#[.]*_START ==> similar to above but upper case sensitive
 function! MyCustomSearch()
+  echo "special chars escape with \\ and regex in []"
+  echo "i.e. Enter search term: \\#\\#[.]*_start"
   let path_term = input("Enter search path (leave blank for current): ")
   let file_type = input("Enter file type for exclusive type search (leave blank for any) : ")
   let grep_term = input("Enter search term: ")
@@ -320,6 +360,20 @@ function! TestFunc()
   redraw!
 endfunction
 
+function! CloseAllWindowsButCurrent()
+   let tabnr= tabpagenr()
+   let tabinfo=gettabinfo(tabnr)
+   let windows=tabinfo[0]['windows']
+
+   for winid in windows
+      let curwin=winnr() "could change
+      let winnr=win_id2win(winid)
+      if winnr!=curwin
+         execute ':'.winnr.'q!'
+      endif
+   endfor
+endfunction"
+
 
 function! LocalHighlightTrails()
   "exec "norm ="
@@ -328,6 +382,8 @@ function! LocalHighlightTrails()
   "redraw!
 endfunction
 
+
+nnoremap <C-1> :call CloseAllBuffersButCurrent()<CR>
 "nnoremap <C-h> :call MyCustomSearch() \| copen<CR><C-l>
 nnoremap <C-h> :call MyCustomSearch()<CR>
 "nnoremap <C-k> :call LocalHighlightTrails()<CR>
@@ -361,11 +417,29 @@ set tabstop=3
 set shiftwidth=3
 set expandtab
 
+" Airline/one-dark theme
+let g:airline_theme='onedark'
+let g:airline_section_c = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
 
+" create NOTES window
+" use 'cp' to copy current file path
+set splitright
+nmap cp :let @" = expand("%")<cr>"
+nmap notes :vsplit notes.vim<cr>
+nmap no :vsplit notes.vim<cr>
 
+"FZF
+map <c-\> :FZF<CR>
+"
+" An action can be a reference to a function that processes selected lines
+"function! s:build_quickfix_list(lines)
+   "call setqflist(map(copy(a:lines), '{ "filename": v:val  }'))
+   "copen
+   "cc
+"endfunction
 
-
-
-
-
-
+"let g:fzf_action = {
+  "\ 'c-u': function('s:build_quickfix_list'),
+  "\ 'ctrl-t': 'tab split',
+  "\ 'ctrl-x': 'split',
+  "\ 'ctrl-v': 'vsplit' }
