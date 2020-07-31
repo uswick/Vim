@@ -1,0 +1,10 @@
+07_2020 changelist
+==================
+
+* airline plugin
+* mkproj changes
+* new scripts
+* changes to .vimrc
+    * new key mappings : no ==> notes
+    * <C-h> search addons
+    * <C-\> file search with FZF
