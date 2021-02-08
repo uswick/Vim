@@ -70,7 +70,8 @@ if __name__ == '__main__':
         vim_cmd += vim_cmd_end
 
         print "[DEBUG] p4vimdiff.py Init complete..."
-        print "[DEBUG] Key bindings: ]+c => next hunk, [+c => prev hunk"
+        print "[DEBUG] Key bindings: j OR ]+c => next hunk; k OR [+c => prev hunk"
+        print "[DEBUG] Key bindings: <F9> => toggle fold/unfold; <F10> => toggle hide split"
         wait()
         if wait_yes("Run vmdiff? "):
             os.system(vim_cmd)
@@ -78,4 +79,5 @@ if __name__ == '__main__':
             print "Run command: ", vim_cmd
     else:
         print "{} not found!".format(desc_file)
+        print "Run $ P4DIFF=vimdiff p4 diff; And then copy std output to {}".format(desc_file)
 

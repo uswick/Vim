@@ -1,11 +1,40 @@
 export PATH=/build/apps/bin:$PATH
 export P4CONFIG=.p4config
+export P4USER=wickramasinu
 export HISTFILE=/tmp/$USER.bash_history
 
+if type rg &> /dev/null; then
+     export FZF_DEFAULT_COMMAND='rg --files'
+     export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
 
 cscope_tags(){
  find $PWD -name "*.[chxsS]" -print > cscope.files && cscope -R -i cscope.files -q -k
  #find $PWD -name "*.[chxsS]" -print > cscope.files && cscope -R -i cscope.files -b -q -k
+}
+
+patch_p4(){
+ rm -f patched_out.tmp
+
+ patch -p2 --merge --dry-run -i $@ > patched_out.tmp
+ #patch -p2 -N --dry-run -i $@ > patched_out.tmp
+ echo "patched output: "
+ cat patched_out.tmp
+ echo "------------------------------------------------"
+ awk 'match($0, /File /) {print $2}' < patched_out.tmp | xargs ls -lart
+  
+ echo ""
+ read -p 'Enter to continue p4 patch files: ' ent
+ awk 'match($0, /File /) {print $2}' < patched_out.tmp | xargs p4 open
+
+ patch -p2 --merge -i $@ > patched_out.tmp
+ echo "patched (with p4 opened) output: "
+ cat patched_out.tmp
+}
+
+
+patch_lic(){
+   patch_p4 ~/lic.patch
 }
 
 p4_unsh_resolve(){
@@ -59,6 +88,27 @@ vim2()
     stty "$STTYOPTS"
 }
 
+
+loadesx()
+{
+   loadESXEnable -e --ignore-platform
+   local cmdEsxEnable=`find . -name loadESXEnable`
+   local cmdLoadEsx=`find . -name loadESX.py`
+
+   if [ -z $cmdLoadEsx ]; then
+      echo "loadESX not found"
+      return
+   fi
+   if [ -z $cmdEsxEnable ]; then
+      echo "loadESXEnable not found"
+      return
+   fi
+
+   read -p 'Enter boot.cfg path: ' TARGET
+   $cmdEsxEnable -e --ignore-platform
+   $cmdLoadEsx --no-sig-check --boot-cfg $TARGET
+}
+
 vmmon_reinstall()
 {
   read -p 'Enter build type: ' bt
@@ -78,23 +128,23 @@ vmmon_reinstall()
   lsmod | grep vmmon
 
   #create device files
-  if [ -c /dev/vmmon ]; then
-    sudo chmod 777 /dev/vmmon
-    echo "/dev/vmmon exist"
-  else
-    sudo mknod /dev/vmmon c 62 0
-    sudo chmod 777 /dev/vmmon
-    echo "creating /dev/vmmon"
-  fi
+  #if [ -c /dev/vmmon ]; then
+    #sudo chmod 777 /dev/vmmon
+    #echo "/dev/vmmon exist"
+  #else
+    #sudo mknod /dev/vmmon c 62 0
+    #sudo chmod 777 /dev/vmmon
+    #echo "creating /dev/vmmon"
+  #fi
   #
-  if [ -c /dev/vmx86.$USER ]; then
-    sudo chmod 777 /dev/vmx86.$USER
-    echo "/dev/vmx86.$USER exist"
-  else
-    sudo mknod /dev/vmx86.$USER c 62 0
-    sudo chmod 777 /dev/vmx86.$USER
-    echo "creating /dev/vmx86.$USER"
-  fi
+  #if [ -c /dev/vmx86.$USER ]; then
+    #sudo chmod 777 /dev/vmx86.$USER
+    #echo "/dev/vmx86.$USER exist"
+  #else
+    #sudo mknod /dev/vmx86.$USER c 62 0
+    #sudo chmod 777 /dev/vmx86.$USER
+    #echo "creating /dev/vmx86.$USER"
+  #fi
   echo "Done!"
 }
 
@@ -280,6 +330,28 @@ alias dbcdash="BORA_SRC_ROOT=/dbc/sc-dbc1221/wickramasinu/repos02 /build/apps/co
 
 alias freemem="free -g; sync; sudo sh -c \"echo 1 > /proc/sys/vm/drop_caches\";free -g"
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # add shortcut key binding C-f
 bind '"\C-f":"fzf\n"'
+
+
+
+review_gen(){
+read -p 'Enter CLN# to generate review: ' cln
+
+change=`p4 describe $cln | grep -ve "Documentation Notes:\|QA Notes:\|Reviewed by:\|Approved by:\|Mailto:\|Review URL:\|Post Submit Tests:\|SVS Submit Restricted:"`
+info=`make-review -c $cln |  grep -i "^INFO\|^TkDiff\|^Meld\|^HTML"`
+
+cat<<EOF>review.gen.tmp
+
+-------------- Change Description -----------------
+$change
+
+-------------- Change Info ------------------------
+$info
+EOF
+
+cat review.gen.tmp | awk '{$1=$1;print}'
+rm -f review.gen.tmp
+}
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
