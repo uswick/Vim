@@ -1,0 +1,329 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd /opt/install/repos01/tree-2/bora
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +621 vmcore/vmm/platform/common/interrupt.S
+badd +153 vmkernel/include/stress/hbr_stress.h
+badd +243 vmkernel/vmkBoot/x86/vmkBootCpu.c
+badd +1 vmcore/vmm/geninfo/genasminfo.c
+badd +78 vmcore/public/x86types.h
+badd +0 support/scripts/geninfo.pl
+badd +46 vmcore/vmm/platform/common/interrupt.macro
+badd +1 vmcore/vmm/platform/common/gates.S
+badd +16 lib/vprobe/exec_asm_x86.S
+badd +1 vmcore/vmm/platform/common/retpoline.S
+badd +1066 vmkernel/hardware/chipset.c
+badd +119 vmkernel/public/x86/excframe.h
+badd +242 vmkernel/user/userLog.h
+badd +71 vmkernel/main/x86/htsched_intr.c
+badd +0 vmcore/vmm/private/x86monitor.h
+argglobal
+silent! argdel *
+argadd vmcore/vmm/platform/common/interrupt.S
+set stal=2
+edit vmcore/vmm/geninfo/genasminfo.c
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitbelow
+wincmd t
+set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 31 + 95) / 191)
+exe '2resize ' . ((&lines * 38 + 26) / 52)
+exe 'vert 2resize ' . ((&columns * 159 + 95) / 191)
+exe '3resize ' . ((&lines * 10 + 26) / 52)
+exe 'vert 3resize ' . ((&columns * 159 + 95) / 191)
+argglobal
+enew
+file NERD_tree_1
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+wincmd w
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 245 - ((24 * winheight(0) + 19) / 38)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+245
+normal! 06|
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+exe 'vert 1resize ' . ((&columns * 31 + 95) / 191)
+exe '2resize ' . ((&lines * 38 + 26) / 52)
+exe 'vert 2resize ' . ((&columns * 159 + 95) / 191)
+exe '3resize ' . ((&lines * 10 + 26) / 52)
+exe 'vert 3resize ' . ((&columns * 159 + 95) / 191)
+tabedit support/scripts/geninfo.pl
+set splitbelow splitright
+set nosplitbelow
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 43 - ((18 * winheight(0) + 24) / 49)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+43
+normal! 05|
+tabedit vmcore/vmm/platform/common/retpoline.S
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitbelow
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 38 + 26) / 52)
+exe '2resize ' . ((&lines * 10 + 26) / 52)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 49 - ((24 * winheight(0) + 19) / 38)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+49
+normal! 0
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+exe '1resize ' . ((&lines * 38 + 26) / 52)
+exe '2resize ' . ((&lines * 10 + 26) / 52)
+tabedit vmcore/vmm/platform/common/interrupt.S
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitbelow
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 38 + 26) / 52)
+exe '2resize ' . ((&lines * 10 + 26) / 52)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 673 - ((14 * winheight(0) + 19) / 38)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+673
+normal! 059|
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+exe '1resize ' . ((&lines * 38 + 26) / 52)
+exe '2resize ' . ((&lines * 10 + 26) / 52)
+tabedit vmcore/vmm/private/x86monitor.h
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitbelow
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 38 + 26) / 52)
+exe '2resize ' . ((&lines * 10 + 26) / 52)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 527 - ((25 * winheight(0) + 19) / 38)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+527
+normal! 0
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+exe '1resize ' . ((&lines * 38 + 26) / 52)
+exe '2resize ' . ((&lines * 10 + 26) / 52)
+tabedit vmcore/vmm/platform/common/gates.S
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitbelow
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 38 + 26) / 52)
+exe '2resize ' . ((&lines * 10 + 26) / 52)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 37 - ((27 * winheight(0) + 19) / 38)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+37
+normal! 033|
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+exe '1resize ' . ((&lines * 38 + 26) / 52)
+exe '2resize ' . ((&lines * 10 + 26) / 52)
+tabedit vmcore/vmm/platform/common/interrupt.macro
+set splitbelow splitright
+set nosplitbelow
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 49 - ((30 * winheight(0) + 24) / 49)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+49
+normal! 013|
+tabnew
+set splitbelow splitright
+set nosplitbelow
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+enew
+file NERD_tree_2
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+tabnext 4
+set stal=1
+if exists('s:wipebuf')
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToOI
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

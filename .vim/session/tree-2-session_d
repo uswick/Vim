@@ -1,0 +1,391 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd /opt/install/repos01/tree-2/bora/vmcore
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +1 vmx/main/hv_user.c
+badd +1 /opt/install/repos01/tree-2/bora/vmkernel/main/x86/world_arch.c
+badd +13 decoder/decoder.c
+badd +1 /opt/install/repos01/tree-2/bora/vmkernel/reliability/x86/smi.c
+badd +1 /opt/install/repos01/tree-2/bora/vmkernel/hardware/intel/cpuIntel.c
+badd +1673 /opt/install/repos01/tree-2/bora/vmkernel/hardware/x86/cpu.c
+badd +1 /opt/install/repos01/tree-2/bora/public/x86imp.h
+badd +7 /opt/install/repos01/tree-2/bora/vmkernel/hardware/intel/cpuIntel.h
+badd +1 ~/.vim/plugin/cscope_maps.vim
+badd +219 /opt/install/repos01/tree-2/bora/vmkernel/hardware/intel/microcodeIntel.c
+badd +1 ~/.vimrc
+badd +173 frobos/test/1543646-sgx/sha/sha256.c
+badd +17 /opt/install/repos01/tree-2/bora/vmkernel/mem/rmmod_ns.h
+badd +23 /opt/install/repos01/tree-2/bora/public/vmk_exports.h
+badd +1 /opt/install/repos01/tree-2/bora/vmkernel/hardware/intel/vtd/vtd.c
+badd +63 /opt/install/repos01/tree-2/bora/vmkernel/hardware/x86/cpu_int_arch.h
+badd +79 /opt/install/repos01/tree-2/bora/vmkernel/private/x86/cpu.h
+badd +2 /opt/install/repos01/tree-2/bora/vmkernel/hardware/intel/Subdir.sc
+badd +1 NERD_tree_2
+badd +1 __Tagbar__.7
+badd +1 __Tagbar__.5
+badd +1 __Tagbar__.8
+argglobal
+silent! argdel *
+set stal=2
+edit NERD_tree_2
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+silent! normal! zE
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+tabedit vmx/main/hv_user.c
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 36 + 25) / 50)
+exe '2resize ' . ((&lines * 10 + 25) / 50)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 822 - ((13 * winheight(0) + 18) / 36)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+822
+normal! 025|
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+exe '1resize ' . ((&lines * 36 + 25) / 50)
+exe '2resize ' . ((&lines * 10 + 25) / 50)
+tabedit /opt/install/repos01/tree-2/bora/vmkernel/main/x86/world_arch.c
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+wincmd _ | wincmd |
+split
+2wincmd k
+wincmd w
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 34 + 25) / 50)
+exe '2resize ' . ((&lines * 1 + 25) / 50)
+exe '3resize ' . ((&lines * 10 + 25) / 50)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 3914 - ((26 * winheight(0) + 17) / 34)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+3914
+normal! 017|
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+exe '1resize ' . ((&lines * 34 + 25) / 50)
+exe '2resize ' . ((&lines * 1 + 25) / 50)
+exe '3resize ' . ((&lines * 10 + 25) / 50)
+tabedit /opt/install/repos01/tree-2/bora/vmkernel/hardware/x86/cpu.c
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 36 + 25) / 50)
+exe '2resize ' . ((&lines * 10 + 25) / 50)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 1 - ((0 * winheight(0) + 18) / 36)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+exe '1resize ' . ((&lines * 36 + 25) / 50)
+exe '2resize ' . ((&lines * 10 + 25) / 50)
+tabedit vmx/main/hv_user.c
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 36 + 25) / 50)
+exe '2resize ' . ((&lines * 10 + 25) / 50)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 813 - ((0 * winheight(0) + 18) / 36)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+813
+normal! 076|
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+exe '1resize ' . ((&lines * 36 + 25) / 50)
+exe '2resize ' . ((&lines * 10 + 25) / 50)
+tabedit /opt/install/repos01/tree-2/bora/vmkernel/private/x86/cpu.h
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 77 - ((12 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+77
+normal! 06|
+tabedit /opt/install/repos01/tree-2/bora/vmkernel/hardware/intel/cpuIntel.c
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 36 + 25) / 50)
+exe '2resize ' . ((&lines * 10 + 25) / 50)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 1175 - ((18 * winheight(0) + 18) / 36)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1175
+normal! 02|
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+exe '1resize ' . ((&lines * 36 + 25) / 50)
+exe '2resize ' . ((&lines * 10 + 25) / 50)
+tabedit /opt/install/repos01/tree-2/bora/vmkernel/hardware/intel/cpuIntel.h
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 22 - ((21 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+22
+normal! 06|
+tabedit /opt/install/repos01/tree-2/bora/public/x86imp.h
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 171 + 106) / 212)
+exe 'vert 2resize ' . ((&columns * 40 + 106) / 212)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 374 - ((13 * winheight(0) + 23) / 47)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+374
+normal! 02|
+wincmd w
+argglobal
+edit __Tagbar__.8
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+silent! normal! zE
+let s:l = 1 - ((0 * winheight(0) + 23) / 47)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+exe 'vert 1resize ' . ((&columns * 171 + 106) / 212)
+exe 'vert 2resize ' . ((&columns * 40 + 106) / 212)
+tabnext 3
+set stal=1
+if exists('s:wipebuf')
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToOI
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

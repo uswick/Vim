@@ -2,9 +2,31 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 set backspace=indent,eol,start
 set mouse=a
+set list
+set listchars=tab:>-
+set colorcolumn=80
+
+
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
 
 syntax on
-color dracula
+"color dracula
+"color onedark
+color pyte
 " ===========Vundle START
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -33,7 +55,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'scrooloose/syntastic'
 
 "Plugin 'vim-scripts/cscope.vim'
-Plugin 'vim-scripts/Conque-GDB'
+"Plugin 'vim-scripts/Conque-GDB'
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
 "Plugin 'garbas/vim-snipmate'
@@ -82,27 +104,33 @@ let CURR_PROJ="/u/uswickra/hpx/hpx-libnbc/sw_coll/hpx"
 "====== Ctrl + D ==> duplicate line
 "
 map <silent> <C-g> g<C-]>
-map <silent> <C-h> <C-w><C-]><C-w>T
+"map <silent> <C-h> <C-w><C-]><C-w>T
 "nnoremap Q :vimgrep "<C-R><C-W>"/u/uswickra/hpx/libnbc-photon/libNBC-1.0.1/**/*.{c,h,cpp,hpp}<CR>:cw<CR>
 "nnoremap Q :vimgrep "<C-R><C-W>"./**/*.{c,h}<CR>:cw<CR>
 "nnoremap Q :Far "<C-R><C-W>" REPL ./**/*.{c,h}
 
 " Far Search and replace
 nnoremap <C-j> :Far <C-R><C-W> <C-R><C-W> ./**/*.*
-nnoremap <C-k> :Far \<<C-R><C-W>\> \<<C-R><C-W>\> ./**/*.*
-nnoremap Q :Fardo<CR>:cw<CR> 
+"nnoremap <C-k> :Far \<<C-R><C-W>\> \<<C-R><C-W>\> ./**/*.*
+"nnoremap Q :Fardo<CR>:cw<CR> 
 
-nnoremap <C-f> :%s/\<<C-r><C-w>\>/
+"nnoremap <C-f> :%s/\<<C-r><C-w>\>/
+"nnoremap <C-f> :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc
+" replace from current cursor position
+nnoremap <C-f> :,$s/\<<C-r><C-w>\>/<C-r><C-w>/gc\|1,''-&&
 nnoremap <S-Down> ddp
 nnoremap <S-Up> dd<Up>P
+"nnoremap <DOWN> ddp
 nnoremap <C-d> yyp
+"nnoremap <UP> dd<Up>P
 
 map <C-c> "+y<CR>
 map <C-v> o<Esc>"+gP<CR>
 "map nerd commenter
 map ? \ci <Down>
 
-nnoremap <S-n> :tabe<CR>
+"nnoremap <S-n> :tabe %<CR>
+nnoremap <S-n> :tabe %<CR>gT:only<CR>gt<c-o>
 "nnoremap <S->m> :set number<CR>
 
 "sessions
@@ -117,12 +145,23 @@ autocmd VimEnter *
                 \ |   wincmd w
                 \ | endif
 
+
+
 "Ctrlp
 nnoremap <c-]> :CtrlPBufTagAll<cr>
-nnoremap <c-P> :CtrlPTag<cr>
+"nnoremap <c-P> :CtrlPTag<cr>
+"map <c-p> :CtrlPMixed<CR>:echo "CtrlPMixed Executed..."<CR>
+"nnoremap <c-P> :CtrlPMixed<CR>:echo "CtrlPMixed Executed..."<CR>
 "nnoremap <c-]> :CtrlPtjump<cr>
 "vnoremap <c-]> :CtrlPtjumpVisual<cr>
+"let g:ctrlp_cmd = 'CtrlPMixed'
+"let g:ctrlp_root_markers = ['build']
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$|vendor\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|build\|data\|log\|tmp$',
+  \ 'file': '\.d$\|\.so$\|\.dat$'
+  \ }
 
+"let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 "behave mswin
 "set clipboard=unnamedplus
 "smap <Del> <C-g>"_d
@@ -171,24 +210,6 @@ map <S-W> <Plug>(expand_region_expand)
 map <S-E> <Plug>(expand_region_shrink)
 
 "
-" ===========AutoFormat
-let g:clang_format#style_options = {
-            \ "AccessModifierOffset" : -4,
-	    \ "AlignAfterOpenBracket": "Align",
-	    \ "AlignConsecutiveAssignments": "true",
-	    \ "AlignConsecutiveDeclarations": "true",
-	    \ "AlignEscapedNewlinesLeft": "true",
-            \ "ColumnLimit" : 80,
-            \ "IndentWidth" : 2,
-            \ "BasedOnStyle" : "Google",
-            \ "AllowShortIfStatementsOnASingleLine" : "true",
-            \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "Standard" : "C++11"}
-
-"noremap <C-L> :ClangFormat<CR>
-autocmd FileType c,cpp,objc,h,hpp,C nnoremap <C-L> :ClangFormat<CR>
-autocmd FileType c,cpp,objc,h,hpp,C vnoremap <C-L> :ClangFormat<CR>
-"
 " ===========EnhancedCPPHighlight
 let g:cpp_class_scope_highlight = 1
 let g:cpp_experimental_template_highlight = 1
@@ -198,16 +219,22 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_auto_jump = 0
+
 "
 let g:syntastic_c_compiler = 'gcc'
 "let g:syntastic_c_compiler = 'x86_64-vmk-linux-gnu-gcc'
 "let g:syntastic_c_compiler_options = ' -std=c11'
 "let g:syntastic_c_compiler_options = ' -std=c11'
-let g:syntastic_c_remove_include_errors = 1
+let g:syntastic_c_remove_include_errors = 0
 
 let g:syntastic_cpp_compiler = 'g++'
 "let g:syntastic_cpp_compiler_options = ' -std=c++11' 
@@ -230,14 +257,16 @@ let g:syntastic_c_config_file = '.syntastic_c_config'
 "===========clang complete
 "let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
 "let g:clang_library_path = '/usr/lib/clang/3.8.0/lib/'
-let g:clang_library_path = '/usr/lib/x86_64-linux-gnu'
+"let g:clang_library_path = '/usr/lib/x86_64-linux-gnu'
+let g:clang_library_path = '/usr/lib/x86_64-linux-gnu/'
+"let g:clang_library_path = '/dbc/sc-dbc1221/wickramasinu/LLVM-clang/llvm-project/build/lib'
 " fix bug on press to Enter
 let g:AutoPairsMapCR = 0
 imap <silent><CR> <CR><Plug>AutoPairsReturn
 
 "==================== gitglutter
 "autocmd VimEnter * GitGutterLineHighlightsEnable
-nmap <C-c> :GitGutterRevertHunk<CR>
+"nmap <C-c> :GitGutterRevertHunk<CR>
 
 "=================== startify 
 autocmd User Startified setlocal buftype=
@@ -283,3 +312,287 @@ noremap 7p "gp
 noremap 8p "hp
 noremap 9p "ip
 noremap 0p "jp
+
+if executable('ag')
+     set grepprg=ag\ --nogroup\ --nocolor\ --ignore\ '*.out*'\ --ignore\ '*.ld*'\ --ignore\ '*.log*'\ --ignore\ '*.map*'\ --ignore\ '*.patch*'\ --ignore\ '*tags*'\ --ignore\ '*.gdbout*'
+     "set grepprg=ag\ -S\ --ignore\ '*.out*'\ --ignore\ '*.css*'\ --ignore\ '*.js*'\ --ignore\ '*.eps*'\ --ignore\ '*.ld*'\ --ignore\ '*.log*'\ --ignore\ '*.map*'\ --ignore\ '*.patch*'\ --ignore\ '*tags*'\ --ignore\ '*.gdbout*'
+     "set grepprg=ag\ --nogroup\ --nocolor
+     command! -bang -nargs=* Ag
+       \ call fzf#vim#grep(
+       \   'ag --column --numbers --noheading --color --smart-case '.shellescape(<q-args>), 1,
+       \   fzf#vim#with_preview(), <bang>0)
+endif
+
+" ripgrep
+
+if executable('rg')
+     let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+     set grepprg=rg\ --vimgrep
+     "command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+     "command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+     command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".(<q-args>), 1, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/plugin/fzf/bin/preview.sh {}']}, <bang>0)
+
+     command! -bang -nargs=? -complete=dir Files
+         \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/plugin/fzf/bin/preview.sh {}']}, <bang>0)
+
+     command! -bang -nargs=* Lines call fzf#vim#lines(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/plugin/fzf/bin/preview.sh {}']}, <bang>0)
+
+endif
+
+function! MyRgSearchHelp()
+  echo "Ripgrep (Rg) search:"
+  echo "use Rg options -t c -t h -t asm // search .c .h and asm files"
+  echo "i.e. Rg <regex> --> '(foo|bar)' -> search foo or bar"
+  echo "i.e. Rg <regex> --> \b(foo|bar)\b -> search foo or bar with world boundry"
+  echo "i.e. Rg <regex> --> 'World_Is(.)*\#'  -> Any char regex"
+  echo "i.e. Rg 'World_Is(.)*\#'  -> search keyword World_Is<Any>#"
+  echo "i.e. Rg '\bWorld_Is(.)*\#'  -> search keyword World_Is<Any>#"
+  echo "i.e. Rg -i <word> -g *.c -g *.h  // (case insensitive -i) pass options; c/h files under current dir"
+  echo "i.e. Rg -i <word> -g *.h vmcore/ // headers only under a path"
+  echo "i.e. Rg -i <word> -g *.h vmcore/ // headers only under a path"
+  echo "i.e. Rg '' -tc modules/vmmon/ //fuzzy search (c type files) under a path"
+endfunction
+
+function! s:tags_sink(line)
+   let parts = split(a:line, '\t\zs')
+   let excmd = matchstr(parts[2:], '^.*\ze;"\t')
+   execute 'silent e' parts[1][:-2]
+   let [magic, &magic] = [&magic, 0]
+   execute excmd
+   let &magic = magic
+endfunction
+            
+function! s:tags()
+   if empty(tagfiles())
+     echohl WarningMsg
+     echom 'Preparing tags'
+     echohl None
+     call system('ctags -R')
+   endif
+                                      
+   call fzf#run({
+     \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
+     \            '| grep -v -a ^!',
+     \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index',
+     \ 'down':    '40%',
+     \ 'sink':    function('s:tags_sink')})
+endfunction
+
+command! FZFTags call s:tags() 
+
+"Search examples  ==>
+" Enter search term: \#\#[.]*_start
+" This will find all strings with ##[any char 0-more times]_start ;
+" capitalization ignored
+" Enter search term: \#\#[.]*_START ==> similar to above but upper case sensitive
+function! MyCustomSearch()
+  let searchcursor = input("Search under cursor? : ")
+  if executable('rg')
+     "let rg = input("Skip RG search? : ")
+     "if rg !=? "y"
+         call MyRgSearchHelp()
+         if searchcursor !=? "y"
+            call feedkeys(':Rg -i '''' -tc -th -t asm ' . expand('.'))
+         else
+            "call feedkeys(':Rg -i ' . expand('<cword>') . ' -t c -t h -t asm')
+            call feedkeys(':Rg ' . expand('<cword>') . ' -t c -t h -t asm')
+         endif
+         return
+     "endif
+  endif
+
+  echo "special chars escape with \\ and regex in []"
+  echo "i.e. Enter search term: \\#\\#[.]*_start"
+  let path_term = input("Enter search path (leave blank for current): ")
+  let file_type = input("Enter file type for exclusive type search (leave blank for any) : ")
+  
+  if searchcursor !=? "y"
+      let grep_term = input("Enter search term: ")
+  endif
+
+  if !empty(file_type)
+    if executable('rg')
+      let group = "-g *." . file_type
+    else
+      let group = "-G \'\." . file_type . "$\' "
+    endif
+    echo group
+  else 
+     " -G is an AG search only option
+    "let group = "-G \'c$\\|h$\\|S$\' "
+    "let group = "-G \'c$\\|h$\\|S$\\|cpp$\\|hpp$\' "
+    if executable('rg')
+      let group = "-g *.c -g *.h"
+    else
+      let group = "-G \'c$\\|h$\\|S$\\|cpp$\\|hpp$\' "
+    endif
+    echo group
+  endif  
+
+  if !empty(path_term)
+    echo "Vim searching default path"
+  endif
+
+  "if executable('rg')
+    "let cmd = "rg --column --line-number --no-heading --color=always --smart-case "
+
+    "if !empty(file_type)
+       "let cmd .= "-g '" . file_type . "' "
+    "endif
+
+    "if empty(grep_term)
+       "let cmd .= "-- "
+    "endif
+    
+    "if empty(path_term)
+       "let cmd .= "."
+    "endif
+    
+    "let cmd .= grep_term . " " . path_term
+    "echo cmd
+    "let a = input("Enter ==>")
+    "call fzf#vim#grep(cmd, 1, {'options': '--delimiter : --nth 4..'}, 0)
+    "return
+  "endif
+
+  if !empty(grep_term)
+    "execute 'silent grep' grep_term path_term group  | copen
+    let cmd = "silent grep " . grep_term . " " . path_term . " " . group
+    execute cmd | copen
+  else
+    echo "Empty search term"
+    let cmd = "silent grep <cword>" . " " . path_term . " " . group
+    echo cmd
+    execute cmd | copen
+    "execute 'silent grep <cword>'  path_term group | copen
+    "execute 'silent grep' <C-R><C-W> | copen
+  endif
+  redraw!
+endfunction
+
+function! TestFunc()
+  let file_type = input("Enter file type for exclusive type search (leave blank for any) : ")
+  let  group = "-G \'\." . file_type . "$\' "
+  echo "This is a test func"
+  echo group
+  redraw!
+endfunction
+
+function! CloseAllWindowsButCurrent()
+   let tabnr= tabpagenr()
+   let tabinfo=gettabinfo(tabnr)
+   let windows=tabinfo[0]['windows']
+
+   for winid in windows
+      let curwin=winnr() "could change
+      let winnr=win_id2win(winid)
+      if winnr!=curwin
+         execute ':'.winnr.'q!'
+      endif
+   endfor
+endfunction"
+
+
+function! LocalHighlightTrails()
+  "exec "norm ="
+  highlight ExtraWhitespace ctermbg=red guibg=red
+  match ExtraWhitespace /\s\+$/
+  "redraw!
+endfunction
+
+
+nnoremap <C-1> :call CloseAllBuffersButCurrent()<CR>
+"nnoremap <C-h> :call MyCustomSearch() \| copen<CR><C-l>
+nnoremap <C-h> :call MyCustomSearch()<CR>
+"nnoremap <C-k> :call LocalHighlightTrails()<CR>
+nnoremap <C-k> :call LocalHighlightTrails()<CR>
+vmap <C-k> =:call LocalHighlightTrails()<CR>:echo "Vim Indent Formatting Done!"<CR>
+"
+" ===========AutoFormat
+"let g:clang_format#style_options = {
+            "\ "AccessModifierOffset" : -4,
+		 "\ "AlignAfterOpenBracket": "Align",
+		 "\ "AlignConsecutiveAssignments": "true",
+		 "\ "AlignConsecutiveDeclarations": "true",
+		 "\ "AlignEscapedNewlinesLeft": "true",
+            "\ "ColumnLimit" : 80,
+            "\ "IndentWidth" : 2,
+            "\ "BasedOnStyle" : "Google",
+            "\ "AllowShortIfStatementsOnASingleLine" : "true",
+            "\ "AlwaysBreakTemplateDeclarations" : "true",
+            "\ "Standard" : "C++11"}
+
+let g:clang_format#detect_style_file = 1
+"noremap <C-L> :ClangFormat<CR>
+autocmd FileType c,cpp,objc,h,hpp,C nnoremap <C-l> :ClangFormat<CR>:call LocalHighlightTrails()<CR>
+autocmd FileType c,cpp,objc,h,hpp,C vnoremap <C-l> :ClangFormat<CR>:call LocalHighlightTrails()<CR>
+
+
+highlight ColorColumn ctermbg=lightgrey guibg=red
+
+set smartindent
+set tabstop=3
+set shiftwidth=3
+set expandtab
+
+" Airline/one-dark theme
+let g:airline_theme='onedark'
+let g:airline_section_c = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#tabs_label = ''
+let g:airline#extensions#tabline#show_splits = 0
+
+" create NOTES window
+" use 'cp' to copy current file path
+set splitright
+nmap cp :let @" = expand("%") . ":" . line(".")<cr>"
+nmap notes :vsplit notes.vim<cr>
+nmap no :vsplit notes.vim<cr>
+
+nmap q :q<cr>
+
+"FZF
+map <c-\> :FZF<CR>
+nnoremap \ :FZFTags<CR>
+nnoremap [ :Select bufline<CR>
+" replace tabbed spaces in p4 change
+map <s-a> :%s/\t  /\t/gc<CR>
+
+" copy selection and out to terminal
+map <s-x> y:!cat /dev/null > vimout.txt<CR>:tabe vimout.txt<CR>p:w!<CR>:!cat vimout.txt<CR>
+
+
+"
+" An action can be a reference to a function that processes selected lines
+"function! s:build_quickfix_list(lines)
+   "call setqflist(map(copy(a:lines), '{ "filename": v:val  }'))
+   "copen
+   "cc
+"endfunction
+
+"let g:fzf_action = {
+  "\ 'c-u': function('s:build_quickfix_list'),
+  "\ 'ctrl-t': 'tab split',
+  "\ 'ctrl-x': 'split',
+  "\ 'ctrl-v': 'vsplit' }
+  "
+" Toggle Fold
+nnoremap <expr> <f9> &foldlevel ? 'zM' :'zR'
+
+let winfold = 1
+" <bar> used to delimit commands
+" Active window split is the one on the right; Thus will focus on resizing
+" right to the left edge
+"nnoremap <expr> <f10> winfold ? '1000<c-w>< <bar> :let winfold=0<CR>' :'<c-w>= <bar> :let winfold=1<CR>'
+nnoremap <expr> <f10> winfold ? '1000<c-w>> <bar> :let winfold=0<CR>' :'<c-w>= <bar> :let winfold=1<CR>'
+"nnoremap <f10> 1000<c-w><
+"nnoremap <f11> <c-w>=
+nmap j  ]c
+nmap k  [c
+
+nnoremap l :Lines<CR>
+
+let g:tabman_width = 25
+let g:tabman_side = 'left'
+
+nmap t :TMToggle<CR>

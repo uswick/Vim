@@ -1,0 +1,286 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd /opt/install/testvmx1/bora/vmcore
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +720 vmx/main/hv_user.c
+badd +3899 /opt/install/testvmx1/bora/vmkernel/main/x86/world_arch.c
+badd +0 vmm/hv/vt/hv-vt.c
+badd +0 vmx/main/msr.c
+badd +350 ../vmkernel/private/prda.h
+badd +1418 ../vmkernel/main/prda.c
+badd +130 ../lib/public/cpuidInfo.h
+badd +239 ../vmkernel/hardware/x86/tscsync_arch.h
+badd +72 ../vmkernel/private/x86/cpu.h
+argglobal
+silent! argdel *
+set stal=2
+edit /opt/install/testvmx1/bora/vmkernel/main/x86/world_arch.c
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 37 + 104) / 208)
+exe '2resize ' . ((&lines * 30 + 22) / 44)
+exe 'vert 2resize ' . ((&columns * 170 + 104) / 208)
+exe '3resize ' . ((&lines * 10 + 22) / 44)
+exe 'vert 3resize ' . ((&columns * 170 + 104) / 208)
+argglobal
+enew
+file NERD_tree_2
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+wincmd w
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 3894 - ((7 * winheight(0) + 15) / 30)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+3894
+normal! 025|
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 37 + 104) / 208)
+exe '2resize ' . ((&lines * 30 + 22) / 44)
+exe 'vert 2resize ' . ((&columns * 170 + 104) / 208)
+exe '3resize ' . ((&lines * 10 + 22) / 44)
+exe 'vert 3resize ' . ((&columns * 170 + 104) / 208)
+tabedit vmx/main/hv_user.c
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 30 + 22) / 44)
+exe '2resize ' . ((&lines * 10 + 22) / 44)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 720 - ((14 * winheight(0) + 15) / 30)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+720
+normal! 022|
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+exe '1resize ' . ((&lines * 30 + 22) / 44)
+exe '2resize ' . ((&lines * 10 + 22) / 44)
+tabedit vmx/main/msr.c
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+2wincmd h
+wincmd w
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 87 + 104) / 208)
+exe 'vert 2resize ' . ((&columns * 51 + 104) / 208)
+exe 'vert 3resize ' . ((&columns * 68 + 104) / 208)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 152 - ((18 * winheight(0) + 20) / 41)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+152
+normal! 034|
+wincmd w
+argglobal
+edit vmx/main/hv_user.c
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 720 - ((19 * winheight(0) + 20) / 41)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+720
+normal! 018|
+wincmd w
+argglobal
+edit vmx/main/hv_user.c
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 830 - ((11 * winheight(0) + 20) / 41)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+830
+normal! 052|
+wincmd w
+exe 'vert 1resize ' . ((&columns * 87 + 104) / 208)
+exe 'vert 2resize ' . ((&columns * 51 + 104) / 208)
+exe 'vert 3resize ' . ((&columns * 68 + 104) / 208)
+tabedit vmm/hv/vt/hv-vt.c
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 30 + 22) / 44)
+exe 'vert 1resize ' . ((&columns * 104 + 104) / 208)
+exe '2resize ' . ((&lines * 30 + 22) / 44)
+exe 'vert 2resize ' . ((&columns * 103 + 104) / 208)
+exe '3resize ' . ((&lines * 10 + 22) / 44)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 199 - ((12 * winheight(0) + 15) / 30)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+199
+normal! 032|
+wincmd w
+argglobal
+edit vmx/main/hv_user.c
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 832 - ((12 * winheight(0) + 15) / 30)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+832
+normal! 012|
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+exe '1resize ' . ((&lines * 30 + 22) / 44)
+exe 'vert 1resize ' . ((&columns * 104 + 104) / 208)
+exe '2resize ' . ((&lines * 30 + 22) / 44)
+exe 'vert 2resize ' . ((&columns * 103 + 104) / 208)
+exe '3resize ' . ((&lines * 10 + 22) / 44)
+tabnext 1
+set stal=1
+if exists('s:wipebuf')
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToOI
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

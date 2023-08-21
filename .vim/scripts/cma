@@ -1,0 +1,77 @@
+#!/bin/bash
+#
+# This is a wrapper around the 'list mailing lists' utility to setup
+# paths and tools needed to run the script.
+#
+set -e;
+pn=$(basename ${0})             # program name
+dn="$(dirname ${0})";           # directory name of this script
+
+function error()
+{
+    local msg="${1}";
+    echo "${pn}(error): ${msg}"; 1>&2
+}
+
+function fatal()
+{
+    local msg="${1}";
+
+    error "${msg}"
+    exit 1;
+}
+
+function validate_paths()
+{
+    local wiki="https://wiki.eng.vmware.com/Build/Toolchain/Access";
+
+    for path in ${*}; do
+        if [ ! -d "${path}" ]; then
+            error "'${path}' does not exist";
+            fatal "Please see ${wiki} for information on how to set up toolchain.";
+        fi;
+    done;
+}
+
+function invoke_tool()
+{
+    local build_apps="${1}";
+    local build_libs="${2}";
+
+    shift 2;
+    export PYTHONDONTWRITEBYTECODE=1
+    export PATH=${PATH}:${build_apps}
+    export PYTHONPATH=${build_libs}:${PYTHONPATH}
+    exec ${python} -s -S -Wignore::DeprecationWarning ${dn}/${pn}.d/${pn}.py "$@";
+}
+
+function main()
+{
+    local tcroot="/build/toolchain"
+    local os_name=$(uname -s)
+    local build_root;
+
+    if [ -d "/build/apps" ]; then
+        build_root="/build";
+    elif [ -d "/bldmnt/apps" ]; then
+        build_root="/bldmnt";
+    else
+        fatal "/build/apps, nor /bldmnt/apps available.";
+    fi;
+
+    local build_apps="${build_root}/apps/bin";
+    local build_libs="${build_root}/apps/lib";
+
+    if [ "${os_name}" = "Linux" ]; then
+        python=${tcroot}/lin32/python-2.7.5/bin/python
+    elif [ "${os_name}" = "Darwin" ]; then
+        python=${tcroot}/mac32/python-2.7.5/bin/python
+    else
+        fatal "Unknown host OS: ${os_name}";
+    fi
+
+    validate_paths $(dirname ${python});
+    invoke_tool "${build_apps}" "${build_libs}" "${@}";
+}
+
+main "${@}";

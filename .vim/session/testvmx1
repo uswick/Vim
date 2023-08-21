@@ -1,0 +1,354 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd /opt/install/testvmx1/bora/vmcore
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +45 vmx/main/sharedArea.c
+badd +862 /opt/install/testvmx1/bora/vmx/main/moduletable.c
+badd +828 vmx/main/hv_user.c
+badd +3670 /opt/install/testvmx1/bora/vmkernel/main/x86/world_arch.c
+badd +481 /opt/install/testvmx1/bora/build/esx/obj/publish/debug/vmm/vmcore-exported/obj/hv-vt.vmm64.map
+badd +193 vmm/hv/vt/hv-vt.c
+badd +65 /opt/install/testvmx1/bora/vim/lib/public/stringTable/StringTable.h
+badd +1375 /opt/install/testvmx1/bora/lib/vmFeature/vmFeature.c
+badd +94 /opt/install/testvmx1/bora/lib/public/strIntern.h
+badd +623 /opt/install/testvmx1/bora/lib/strIntern/strIntern.c
+badd +28 public/sharedAreaDesc.h
+badd +24 public/sharedAreaType.h
+badd +1329 /opt/install/testvmx1/bora/vmkernel/main/arm64/world_arch.c
+badd +30 /opt/install/testvmx1/bora/devices/pcipassthru/pciPassthru_monitor.c
+badd +0 public/sharedArea.h
+badd +1 ../vmkernel/main/sharedArea.c
+argglobal
+silent! argdel *
+set stal=2
+edit /opt/install/testvmx1/bora/vmx/main/moduletable.c
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 53 + 103) / 206)
+exe '2resize ' . ((&lines * 37 + 25) / 51)
+exe 'vert 2resize ' . ((&columns * 152 + 103) / 206)
+exe '3resize ' . ((&lines * 10 + 25) / 51)
+exe 'vert 3resize ' . ((&columns * 152 + 103) / 206)
+argglobal
+enew
+file NERD_tree_2
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+wincmd w
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 978 - ((0 * winheight(0) + 18) / 37)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+978
+normal! 025|
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+exe 'vert 1resize ' . ((&columns * 53 + 103) / 206)
+exe '2resize ' . ((&lines * 37 + 25) / 51)
+exe 'vert 2resize ' . ((&columns * 152 + 103) / 206)
+exe '3resize ' . ((&lines * 10 + 25) / 51)
+exe 'vert 3resize ' . ((&columns * 152 + 103) / 206)
+tabedit vmx/main/sharedArea.c
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+wincmd w
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 37 + 25) / 51)
+exe 'vert 1resize ' . ((&columns * 95 + 103) / 206)
+exe '2resize ' . ((&lines * 10 + 25) / 51)
+exe 'vert 2resize ' . ((&columns * 95 + 103) / 206)
+exe '3resize ' . ((&lines * 37 + 25) / 51)
+exe 'vert 3resize ' . ((&columns * 110 + 103) / 206)
+exe '4resize ' . ((&lines * 10 + 25) / 51)
+exe 'vert 4resize ' . ((&columns * 110 + 103) / 206)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 1134 - ((18 * winheight(0) + 18) / 37)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1134
+normal! 033|
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+argglobal
+edit /opt/install/testvmx1/bora/lib/strIntern/strIntern.c
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 768 - ((36 * winheight(0) + 18) / 37)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+768
+normal! 021|
+wincmd w
+argglobal
+edit /opt/install/testvmx1/bora/lib/vmFeature/vmFeature.c
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 1410 - ((9 * winheight(0) + 5) / 10)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1410
+normal! 014|
+wincmd w
+exe '1resize ' . ((&lines * 37 + 25) / 51)
+exe 'vert 1resize ' . ((&columns * 95 + 103) / 206)
+exe '2resize ' . ((&lines * 10 + 25) / 51)
+exe 'vert 2resize ' . ((&columns * 95 + 103) / 206)
+exe '3resize ' . ((&lines * 37 + 25) / 51)
+exe 'vert 3resize ' . ((&columns * 110 + 103) / 206)
+exe '4resize ' . ((&lines * 10 + 25) / 51)
+exe 'vert 4resize ' . ((&columns * 110 + 103) / 206)
+tabedit vmm/hv/vt/hv-vt.c
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 37 + 25) / 51)
+exe '2resize ' . ((&lines * 10 + 25) / 51)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 192 - ((9 * winheight(0) + 18) / 37)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+192
+normal! 03|
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+exe '1resize ' . ((&lines * 37 + 25) / 51)
+exe '2resize ' . ((&lines * 10 + 25) / 51)
+tabedit public/sharedArea.h
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 131 - ((20 * winheight(0) + 24) / 49)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+131
+normal! 057|
+tabedit vmx/main/hv_user.c
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 37 + 25) / 51)
+exe '2resize ' . ((&lines * 10 + 25) / 51)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 826 - ((16 * winheight(0) + 18) / 37)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+826
+normal! 018|
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+exe '1resize ' . ((&lines * 37 + 25) / 51)
+exe '2resize ' . ((&lines * 10 + 25) / 51)
+tabedit /opt/install/testvmx1/bora/vmkernel/main/x86/world_arch.c
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 37 + 25) / 51)
+exe '2resize ' . ((&lines * 10 + 25) / 51)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 3694 - ((0 * winheight(0) + 18) / 37)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+3694
+normal! 061|
+wincmd w
+argglobal
+enew
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+exe '1resize ' . ((&lines * 37 + 25) / 51)
+exe '2resize ' . ((&lines * 10 + 25) / 51)
+tabnext 5
+set stal=1
+if exists('s:wipebuf')
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToOI
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :
